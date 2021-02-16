@@ -1,4 +1,5 @@
 
-¯%squid:RedundantThrowsDeclarationCheck+"yRemove the declaration of thrown exception 'org.apache.shiro.authc.AuthenticationException' which is a runtime exception.(Ë´ã›ùÿÿÿÿ
-ª%squid:RedundantThrowsDeclarationCheck/"yRemove the declaration of thrown exception 'org.apache.shiro.authc.AuthenticationException' which is a runtime exception.(·ç‚
-Fsquid:S1068"*Remove this unused "logger" private field.(Úµ®£øÿÿÿÿ
+ª%squid:RedundantThrowsDeclarationCheck0"yRemove the declaration of thrown exception 'org.apache.shiro.authc.AuthenticationException' which is a runtime exception.(·ç‚
+psquid:UselessImportCheck"ERemove this unused import 'com.sunland.nbjj.common.utils.MD5PwdUtil'.(ô¨·Õ8®ôûĞú.
+¯%squid:RedundantThrowsDeclarationCheck,"yRemove the declaration of thrown exception 'org.apache.shiro.authc.AuthenticationException' which is a runtime exception.(Ë´ã›ùÿÿÿÿ
+Fsquid:S1068"*Remove this unused "logger" private field.(Úµ®£øÿÿÿÿ
