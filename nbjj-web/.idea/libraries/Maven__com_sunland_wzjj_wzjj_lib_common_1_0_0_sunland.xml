@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.sunland.wzjj:wzjj-lib-common:1.0.0-sunland">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../../../mvnrepo/com/sunland/wzjj/wzjj-lib-common/1.0.0-sunland/wzjj-lib-common-1.0.0-sunland.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../../../../mvnrepo/com/sunland/wzjj/wzjj-lib-common/1.0.0-sunland/wzjj-lib-common-1.0.0-sunland-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../../../../mvnrepo/com/sunland/wzjj/wzjj-lib-common/1.0.0-sunland/wzjj-lib-common-1.0.0-sunland-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

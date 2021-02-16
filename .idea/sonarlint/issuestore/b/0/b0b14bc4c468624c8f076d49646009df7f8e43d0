@@ -1,0 +1,4 @@
+
+¯%squid:RedundantThrowsDeclarationCheck+"yRemove the declaration of thrown exception 'org.apache.shiro.authc.AuthenticationException' which is a runtime exception.(Ë´ã›ùÿÿÿÿ
+ª%squid:RedundantThrowsDeclarationCheck/"yRemove the declaration of thrown exception 'org.apache.shiro.authc.AuthenticationException' which is a runtime exception.(·ç‚
+Fsquid:S1068"*Remove this unused "logger" private field.(Úµ®£øÿÿÿÿ

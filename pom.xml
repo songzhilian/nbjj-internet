@@ -1,0 +1,279 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.sunland.nbjj</groupId>
+  <artifactId>nbjj-internet</artifactId>
+  <version>1.0.0-sunland</version>
+  <modules>
+    <module>nbjj-lib-common</module>
+    <module>nbjj-web</module>
+  </modules>
+  <packaging>pom</packaging>
+
+  <name>nbjj-internet</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!-- 默认为正式版本 -->
+    <project.version>1.0.0-sunland</project.version>
+    <!--erp-web-->
+    <spring.version>3.2.5.RELEASE</spring.version>
+  </properties>
+
+  <profiles>
+    <profile>
+      <id>sunland</id>
+      <properties>
+        <project.version>1.0.0-sunland</project.version>
+      </properties>
+    </profile>
+    <profile>
+      <id>rc</id>
+      <properties>
+        <project.version>1.0.0-rc</project.version>
+      </properties>
+    </profile>
+
+  </profiles>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.11</version>
+      </dependency>
+
+      <!--日志-->
+      <dependency>
+        <groupId>log4j</groupId>
+        <artifactId>log4j</artifactId>
+        <version>1.2.17</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>1.7.5</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-log4j12</artifactId>
+        <version>1.7.7</version>
+      </dependency>
+
+      <!--解析json-->
+      <dependency>
+        <groupId>org.codehaus.jackson</groupId>
+        <artifactId>jackson-mapper-asl</artifactId>
+        <version>1.9.12</version>
+      </dependency>
+      <dependency>
+        <groupId>net.sf.json-lib</groupId>
+        <artifactId>json-lib</artifactId>
+        <version>2.4</version>
+        <classifier>jdk15</classifier>
+      </dependency>
+
+      <!--解析XML-->
+      <dependency>
+        <groupId>dom4j</groupId>
+        <artifactId>dom4j</artifactId>
+        <version>1.6.1</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.thoughtworks.xstream</groupId>
+        <artifactId>xstream</artifactId>
+        <version>1.4.4</version>
+      </dependency>
+
+      <dependency>
+        <groupId>commons-codec</groupId>
+        <artifactId>commons-codec</artifactId>
+        <version>1.7</version>
+      </dependency>
+
+      <!-- 用来复制 JavaBean 属性的类库，类似 BeanUtils-->
+      <dependency>
+        <groupId>net.sf.dozer</groupId>
+        <artifactId>dozer</artifactId>
+        <version>5.4.0</version>
+      </dependency>
+      <!--  Google Guava Collections（以下都简称为 Guava Collections）是 Java Collections Framework 的增强和扩展-->
+      <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <version>18.0</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.mybatis</groupId>
+        <artifactId>mybatis</artifactId>
+        <version>3.1.1</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.mybatis</groupId>
+        <artifactId>mybatis-spring</artifactId>
+        <version>1.1.1</version>
+      </dependency>
+
+      <!--权限框架-->
+      <dependency>
+        <groupId>org.apache.shiro</groupId>
+        <artifactId>shiro-spring</artifactId>
+        <version>1.2.1</version>
+      </dependency>
+
+      <!--模拟url访问-->
+      <dependency>
+        <groupId>commons-httpclient</groupId>
+        <artifactId>commons-httpclient</artifactId>
+        <version>3.0.1</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.zookeeper</groupId>
+        <artifactId>zookeeper</artifactId>
+        <version>3.3.3</version>
+      </dependency>
+
+      <dependency>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>2.0.1</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-test</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <!-- Spring-->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-core</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-web</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context-support</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-webmvc</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-jms</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+
+      <!-- aop -->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-aop</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-tx</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>druid</artifactId>
+        <version>1.0.15</version>
+      </dependency>
+
+      <!-- jdbc driver -->
+      <dependency>
+        <groupId>com.oracle</groupId>
+        <artifactId>ojdbc14</artifactId>
+        <version>9.0.2.0.2</version>
+      </dependency>
+
+      <!-- C3P0是一个开源的JDBC连接池 -->
+      <dependency>
+        <groupId>c3p0</groupId>
+        <artifactId>c3p0</artifactId>
+        <version>0.9.1.2</version>
+      </dependency>
+
+      <!-- jstl JSP标签库-->
+      <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>jstl</artifactId>
+        <version>1.2</version>
+      </dependency>
+
+      <!-- servelt -->
+      <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>servlet-api</artifactId>
+        <version>2.5</version>
+      </dependency>
+
+      <!-- FreeMarker是一款模板引擎 -->
+      <dependency>
+        <groupId>org.freemarker</groupId>
+        <artifactId>freemarker</artifactId>
+        <version>2.3.19</version>
+      </dependency>
+
+      <!-- 阿里开源的dubbo服务框架-->
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>dubbo</artifactId>
+        <version>2.5.3</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.2</version>
+        <configuration>
+          <source>1.6</source><!-- 源代码使用的开发版本 -->
+          <target>1.6</target><!-- 需要生成的目标class文件的编译版本 -->
+          <encoding>UTF-8</encoding>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.17</version>
+        <configuration>
+          <skip>true</skip> <!-- 编译时跳过test -->
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

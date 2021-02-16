@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-3.1.xsd  ">
+
+    <context:annotation-config/>
+    <import resource="classpath:/spring-config/spring-domain.xml"/>
+
+    <!-- shiro配置 -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <!-- shrio安全 -->
+        <property name="securityManager" ref="securityManager"/>
+        <!-- 登录请求 -->
+        <property name="loginUrl" value="/index.jsp"/>
+        <!-- 登录成功后 -->
+        <property name="successUrl" value="/acd/bxgs/search"/>
+        <!-- 未授权的URL -->
+        <property name="unauthorizedUrl" value="/index.jsp"/>
+        <property name="filterChainDefinitions">
+            <value>
+                /* = authc
+                /acd/bxgs/** = authc
+            </value>
+        </property>
+    </bean>
+
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="shiroYdjwRealm"/>
+        <property name="subjectFactory" ref="shiroYdjwSubjectFactory"/>
+    </bean>
+
+    <!-- 获取安全数据（如用户、角色、权限） Shiro不提供维护用户/权限，而是通过Realm让开发人员自己注入-->
+    <bean id="shiroYdjwRealm" class="com.sunland.frame.shiro.ShiroYdjwRealm"></bean>
+    <bean id="shiroYdjwSubjectFactory" class="com.sunland.frame.shiro.ShiroYdjwSubjectFactory"></bean>
+
+</beans>

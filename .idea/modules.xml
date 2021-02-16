@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/nbjj-internet.iml" filepath="$PROJECT_DIR$/nbjj-internet.iml" />
+      <module fileurl="file://$PROJECT_DIR$/nbjj-lib-common/nbjj-lib-common.iml" filepath="$PROJECT_DIR$/nbjj-lib-common/nbjj-lib-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/nbjj-web/nbjj-web.iml" filepath="$PROJECT_DIR$/nbjj-web/nbjj-web.iml" />
+    </modules>
+  </component>
+</project>

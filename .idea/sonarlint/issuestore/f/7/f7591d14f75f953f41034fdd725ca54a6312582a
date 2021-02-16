@@ -1,0 +1,10 @@
+
+ysquid:UselessImportCheck	"IRemove this unused import 'com.sunland.nbjj.service.acd.IAcdBxgsService'.(­Í‹ ýÿÿÿÿ8‡äÒêö.
+Usquid:S3752T">Add a "method" parameter to this "@RequestMapping" annotation.(¸³­…
+Usquid:S3752>">Add a "method" parameter to this "@RequestMapping" annotation.(Ç¿ç”
+[squid:S1854."?Remove this useless assignment to local variable "currentUser".(Îï£¡ýÿÿÿÿ
+Usquid:S3752*">Add a "method" parameter to this "@RequestMapping" annotation.(»êê¦
+Lsquid:S1481."0Remove this unused "currentUser" local variable.(Îï£¡ýÿÿÿÿ
+[squid:UselessImportCheck"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8™±·Ðú.
+\squid:S3752t">Add a "method" parameter to this "@RequestMapping" annotation.(˜Ã¥²8™±·Ðú.
+Rsquid:EmptyStatementUsageCheckw"Remove this empty statement.(©áÄ¶þÿÿÿÿ8™±·Ðú.

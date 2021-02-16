@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sunland.nbjj.dao.admin.ISysUserDao">
+    <resultMap id="ResultMap" type="SysUser">
+        <result property="yhdm" column="yhdm"/>
+        <result property="xm" column="xm"/>
+        <result property="bmdm" column="bmdm"/>
+        <result property="sfzmhm" column="sfzmhm"/>
+        <result property="mm" column="mm"/>
+        <result property="qsip" column="qsip"/>
+        <result property="zzip" column="zzip"/>
+        <result property="sfmj" column="sfmj"/>
+        <result property="ssmj" column="ssmj"/>
+        <result property="sfbd" column="sfbd"/>
+        <result property="zt" column="zt"/>
+        <result property="gxsj" column="gxsj"/>
+    </resultMap>
+    <insert id="insertUser">
+        insert into sys_user (yhdm,mm,zt,gxsj,bxgsid)values
+        (#{yhdm},#{mm},#{zt},#{gxsj},#{bxgsid})
+    </insert>
+    <update id="updateSysUser">
+        update SYS_USER set mm = #{mm} where yhdm = #{yhdm}
+    </update>
+
+    <select id="getUserInfoByYhdm" resultMap="ResultMap">
+        <![CDATA[
+            select * from sys_user where yhdm=#{yhdm,jdbcType=VARCHAR}
+        ]]>
+    </select>
+    <select id="getAccountCountById" resultType="java.lang.Integer">
+        select count(1) from sys_user where bxgsid = #{bxgsid}
+    </select>
+
+</mapper>
