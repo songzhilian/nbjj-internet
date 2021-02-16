@@ -1,0 +1,12 @@
+
+csquid:S1301ô"KReplace this "switch" statement by "if" statements to increase readability.(‰´°â
+csquid:S1301ê"KReplace this "switch" statement by "if" statements to increase readability.(‰´°â
+Q"squid:SwitchLastCaseIsDefaultCheckô""Add a default case to this switch.(‰´°â
+Q"squid:SwitchLastCaseIsDefaultCheckê""Add a default case to this switch.(‰´°â
+¤%squid:RedundantThrowsDeclarationCheckú"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(¶÷·ãşÿÿÿÿ
+>squid:S1168“"&Return an empty array instead of null.(¥¹ï
+>squid:S1168˜"&Return an empty array instead of null.(¥¹ï
+Lsquid:S1133©"5Do not forget to remove this deprecated code someday.(¶Ç$
+Psquid:S1197ª"8Move the array designator from the variable to the type.(Ú˜íÄ
+Psquid:S1197·"8Move the array designator from the variable to the type.(ùå´€
+¤%squid:RedundantThrowsDeclarationCheckİ"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(ïˆÕµÿÿÿÿÿ

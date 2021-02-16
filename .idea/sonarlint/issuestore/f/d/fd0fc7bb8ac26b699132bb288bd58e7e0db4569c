@@ -1,0 +1,17 @@
+
+qsquid:S1192œ"YUse already-defined constant 'ISO_DATETIME_FORMAT' instead of duplicating its value here.(¾À·È
+qsquid:S1192‘"YUse already-defined constant 'CHN_DATETIME_FORMAT' instead of duplicating its value here.( ÍÜ·
+msquid:S1192›"UUse already-defined constant 'ISO_DATE_FORMAT' instead of duplicating its value here.(ÒŠ“•
+msquid:S1192"UUse already-defined constant 'CHN_DATE_FORMAT' instead of duplicating its value here.(ÁèĞÿ
+{squid:S1488â"^Immediately return this expression instead of assigning it to the temporary variable "monday".(à¬Õˆûÿÿÿÿ
+{squid:S1488ë"^Immediately return this expression instead of assigning it to the temporary variable "monday".(à¬Õˆûÿÿÿÿ
+{squid:S1488ö"^Immediately return this expression instead of assigning it to the temporary variable "sunday".(½¤°Õÿÿÿÿÿ
+@squid:S1148±"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+™squid:S1186 "€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Çµí‘
+Usquid:S3252U">Use static access with "java.util.Calendar" for "getInstance".(Ó·¬¾
+Usquid:S3252i">Use static access with "java.util.Calendar" for "getInstance".(Ó·¬¾
+5squid:S2153z"Remove the boxing to "Double".(–ôÒ
+Vsquid:S3252…">Use static access with "java.util.Calendar" for "getInstance".(Ó·¬¾
+\squid:S1854æ"?Remove this useless assignment to local variable "betweenDays".(Äùêáÿÿÿÿÿ
+Gsquid:S00108÷")Either remove or fill this block of code.(âÃƒŠıÿÿÿÿ
+hsquid:CommentedOutCodeLineä"<This block of commented-out lines of code should be removed.(¨½Š÷ıÿÿÿÿ

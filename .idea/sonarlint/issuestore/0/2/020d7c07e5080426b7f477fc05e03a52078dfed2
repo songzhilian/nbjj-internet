@@ -1,0 +1,16 @@
+
+ojavascript:S2589‡"MRefactor this code so that this expression does not always evaluate to false.(½”Ğøÿÿÿÿ
+_javascript:S2814"CRename "_8" as this name is already used in declaration at line 23.(ÌëŠ
+gjavascript:S2814Á"ERename "_61" as this name is already used in declaration at line 308.(×Øˆşÿÿÿÿ
+ejavascript:S2814º"CRename "i" as this name is already used in declaration at line 174.(Áá šúÿÿÿÿ
+bjavascript:S2814¿"ERename "_5c" as this name is already used in declaration at line 300.(¦ªÍ·
+bjavascript:S2814»"ERename "_37" as this name is already used in declaration at line 176.(íí‰ò
+`javascript:S2814À"CRename "i" as this name is already used in declaration at line 314.(§«£—
+sjavascript:S1117Ç"Q"i" hides or potentially hides a variable declared in an outer scope at line 174.(Áá šúÿÿÿÿ
+=javascript:S11167"Remove this empty statement.(ôŸìúÿÿÿÿ
+=javascript:S1116G"Remove this empty statement.(ôŸìúÿÿÿÿ
+>javascript:S1116Î"Remove this empty statement.(ôŸìúÿÿÿÿ
+>javascript:S1116Ó"Remove this empty statement.(ôŸìúÿÿÿÿ
+>javascript:S1116¥"Remove this empty statement.(ôŸìúÿÿÿÿ
+]javascript:UnusedVariable"3Remove the declaration of the unused '_5' variable.(µÛÀúùÿÿÿÿ
+Vjavascript:S1854"5Remove this useless assignment to local variable "_5"(µÛÀúùÿÿÿÿ

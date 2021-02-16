@@ -1,0 +1,10 @@
+
+?squid:S1148I"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+Qsquid:S1191O"5Use classes from the Java API instead of Sun classes.(Åþ”Œúÿÿÿÿ
+8squid:S1643"Use a StringBuilder instead.(¨ñö‚ýÿÿÿÿ
+?squid:S11488"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+?squid:S1148U"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+_squid:S2259:"H"NullPointerException" will be thrown when invoking method "byte2hex()".(ä¦ø×
+_squid:S2259K"H"NullPointerException" will be thrown when invoking method "byte2hex()".(ä¦ø×
+Qsquid:S1118":Add a private constructor to hide the implicit public one.(Î³Ñ€
+3squid:S1643 "Use a StringBuilder instead.(í‘êÁ

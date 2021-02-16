@@ -1,0 +1,7 @@
+
+Ysquid:S00107"AConstructor has 8 parameters, which is greater than 7 authorized.(σκ¬†
+Ysquid:S00107"AConstructor has 9 parameters, which is greater than 7 authorized.(σκ¬†
+Tsquid:S1172"=Remove this unused method parameter "securityMonitorService".(σκ¬†
+Tsquid:S1172"=Remove this unused method parameter "securityMonitorService".(σκ¬†
+ª%squid:RedundantThrowsDeclarationCheck""yRemove the declaration of thrown exception 'org.apache.shiro.authc.AuthenticationException' which is a runtime exception.(Ω©Υ
+?squid:S1185""(Remove this method to simply inherit it.(Ω©Υ

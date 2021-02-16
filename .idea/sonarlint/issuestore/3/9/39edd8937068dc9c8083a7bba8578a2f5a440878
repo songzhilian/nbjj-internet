@@ -1,0 +1,23 @@
+
+‚squid:S1192&"kDefine a constant instead of duplicating this literal "application/x-www-form-urlencoded;charset=" 3 times.(¸ƒ£Ô
+rsquid:S1192‡"UUse already-defined constant 'DEFAULT_CHARSET' instead of duplicating its value here.(ªÃ·­üÿÿÿÿ
+Lsquid:S1066ê"/Merge this if statement with the enclosing one.(»‰®®üÿÿÿÿ
+Vsquid:S1118":Add a private constructor to hide the implicit public one.(È¢ü¼ûÿÿÿÿ
+|squid:S1149‹"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(Àëá¼ÿÿÿÿÿ
+˜squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ú¥È¢
+squid:S1186 "€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÉÂµ°øÿÿÿÿ
+=squid:S1168"&Return an empty array instead of null.(¥¹ï
+Bsquid:S4424"+Change this method so it throws exceptions.(Ú¥È¢
+Gsquid:S4424 "+Change this method so it throws exceptions.(ÉÂµ°øÿÿÿÿ
+nsquid:S27375"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(ö™û
+nsquid:S2737<"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(ö™û
+nsquid:S2737Y"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(ö™û
+nsquid:S2737u"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(ö™û
+Isquid:S4423„",Change this code to use a stronger protocol.(‰ÍˆÚûÿÿÿÿ
+Isquid:S3510"2Do not unconditionally return true in this method.(•ûï
+osquid:S2737ƒ"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(ö™û
+osquid:S2737§"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(ö™û
+osquid:S2737Á"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(ö™û
+osquid:S2737È"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(ö™û
+Hsquid:S1481‹"+Remove this unused "strBuf" local variable.(Àëá¼ÿÿÿÿÿ
+Dsquid:S1481¶",Remove this unused "charset" local variable.(ëãä

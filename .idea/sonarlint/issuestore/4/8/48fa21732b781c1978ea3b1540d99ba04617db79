@@ -1,0 +1,12 @@
+
+Z'javascript:FunctionDefinitionInsideLoopa"'Define this function outside of a loop.(À³ø×
+Z'javascript:FunctionDefinitionInsideLoopr"'Define this function outside of a loop.(’„±ö
+^javascript:S2814k"BRename "i" as this name is already used in declaration at line 92.(ô¥‰ø
+^javascript:S2814I"BRename "i" as this name is already used in declaration at line 66.(åØå§
+ojavascript:S1117p"S"name" hides or potentially hides a variable declared in an outer scope at line 93.(êÜ×‘
+yjavascript:S1117¹"W"options" hides or potentially hides a variable declared in an outer scope at line 244.(”´©¨üÿÿÿÿ
+sjavascript:S1117™"V"parent" hides or potentially hides a variable declared in an outer scope at line 244.(º‚Ô…
+xjavascript:S1117¹"V"parent" hides or potentially hides a variable declared in an outer scope at line 244.(”´©¨üÿÿÿÿ
+ljavascript:S1117o"P"i" hides or potentially hides a variable declared in an outer scope at line 92.(ô¥‰ø
+ijavascript:UnusedVariableô">Remove the declaration of the unused 'dblTouchTimer' variable.(”ÇÓïüÿÿÿÿ
+€javascript:S2703û"cAdd the "let", "const" or "var" keyword to this declaration of "dblClickTimer" to make it explicit.(ç«êõ

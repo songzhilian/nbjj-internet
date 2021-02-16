@@ -1,0 +1,13 @@
+
+ojavascript:S2589¿"MRefactor this code so that this expression does not always evaluate to false.(¢»–¶øÿÿÿÿ
+`javascript:S2814Ü"CRename "i" as this name is already used in declaration at line 204.(²Ùèâ
+ejavascript:S2814#"DRename "row" as this name is already used in declaration at line 32.(è”…‡üÿÿÿÿ
+ijavascript:S2814„"GRename "index" as this name is already used in declaration at line 365.(´–Àáûÿÿÿÿ
+`javascript:S2814…"CRename "i" as this name is already used in declaration at line 382.(§«£—
+ijavascript:S2814Ý"GRename "group" as this name is already used in declaration at line 206.(Æ…ñŸúÿÿÿÿ
+djavascript:S2814†"GRename "group" as this name is already used in declaration at line 376.(¦ô™À
+njavascript:S1117ì"Q"i" hides or potentially hides a variable declared in an outer scope at line 204.(²Ùèâ
+rjavascript:S1117Ý"U"index" hides or potentially hides a variable declared in an outer scope at line 299.(Õ´€º
+wjavascript:S1117í"U"group" hides or potentially hides a variable declared in an outer scope at line 206.(Æ…ñŸúÿÿÿÿ
+[javascript:UnusedVariable"6Remove the declaration of the unused 'state' variable.(¶©®õ
+Tjavascript:S1854"8Remove this useless assignment to local variable "state"(¶©®õ

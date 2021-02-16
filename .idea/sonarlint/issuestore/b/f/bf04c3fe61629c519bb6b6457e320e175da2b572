@@ -1,0 +1,16 @@
+
+Z'javascript:FunctionDefinitionInsideLoopI"'Define this function outside of a loop.(À³ø×
+Z'javascript:FunctionDefinitionInsideLoopZ"'Define this function outside of a loop.(’„±ö
+^javascript:S2814S"BRename "i" as this name is already used in declaration at line 68.(ô¥‰ø
+^javascript:S2814;"BRename "i" as this name is already used in declaration at line 50.(İÛşÿ
+ljavascript:S1117W"P"i" hides or potentially hides a variable declared in an outer scope at line 68.(ô¥‰ø
+>javascript:S1116Œ"Remove this empty statement.(ôŸìúÿÿÿÿ
+>javascript:S1116£"Remove this empty statement.(ôŸìúÿÿÿÿ
+>javascript:S1116Â"Remove this empty statement.(ôŸìúÿÿÿÿ
+>javascript:S1116Ã"Remove this empty statement.(ôŸìúÿÿÿÿ
+>javascript:S1116ß"Remove this empty statement.(ôŸìúÿÿÿÿ
+>javascript:S1116ë"Remove this empty statement.(ôŸìúÿÿÿÿ
+>javascript:S1116ô"Remove this empty statement.(ôŸìúÿÿÿÿ
+>javascript:S1116û"Remove this empty statement.(ôŸìúÿÿÿÿ
+_javascript:UnusedVariableÈ"4Remove the declaration of the unused '_30' variable.(êÖœ¼şÿÿÿÿ
+€javascript:S2703Ğ"cAdd the "let", "const" or "var" keyword to this declaration of "dblClickTimer" to make it explicit.(ç«êõ

@@ -1,0 +1,14 @@
+
+ojavascript:S2589ç"MRefactor this code so that this expression does not always evaluate to false.( Ì˜âøÿÿÿÿ
+ojavascript:S2589ï"MRefactor this code so that this expression does not always evaluate to false.( Ì˜âøÿÿÿÿ
+jjavascript:S2589¦"MRefactor this code so that this expression does not always evaluate to false.(Ê¨ý«
+['javascript:FunctionDefinitionInsideLoop‚"'Define this function outside of a loop.(öÚ¾å
+mjavascript:S2814q"LRename "divElement" as this name is already used in declaration at line 100.(ÒÑúÊÿÿÿÿÿ
+mjavascript:S2814"LRename "divElement" as this name is already used in declaration at line 100.(ÒÑúÊÿÿÿÿÿ
+njavascript:S2814‹"LRename "divElement" as this name is already used in declaration at line 100.(ÒÑúÊÿÿÿÿÿ
+`javascript:S2814¾"CRename "i" as this name is already used in declaration at line 185.(Ö©ÎÅ
+ajavascript:UnusedVariableå";Remove the declaration of the unused 'pubPattern' variable.(Ãä‘È
+Zjavascript:S1854å"=Remove this useless assignment to local variable "pubPattern"(Ãä‘È
+cjavascript:S1126ë"AReplace this if-then-else statement by a single return statement.(àýÅ«øÿÿÿÿ
+^javascript:S1126ó"AReplace this if-then-else statement by a single return statement.(—Ð¡š
+]javascript:S1126ú"AReplace this if-then-else statement by a single return statement.(šŸ -
