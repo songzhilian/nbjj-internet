@@ -27,6 +27,15 @@
          }
       }
 
+      function openLogin(){
+          $("#regDg").dialog('close');
+          $("#logDg").dialog('open');
+          document.onkeydown = function(){
+              if(event.keyCode == "13"){
+                  login();
+              }
+          }
+      }
       function openRegister() {
 
           //获取保险公司数据
@@ -212,6 +221,9 @@
     <div style="text-align:center;padding:20px">
         <a href="javascript:void(0)" class="easyui-linkbutton"  onclick="register()"
            style="padding:5px 0px;width: 290px" >注册</a>
+    </div>
+    <div>
+        <a href="javascript:void(0)" onclick="openLogin()" >返回登录</a>
     </div>
 </div>
 </body>
