@@ -4,7 +4,7 @@ package com.sunland.frame.enumerate;
  * Created by xdb on 2016/5/31.
  */
 public enum EnumJsonResult implements IEnum {
-
+    ZQMJ_LOGIN_SCCESS(2,"登录成功"),
     LOGIN_SUCCESS(1, "登录成功"),
     LOGIN_FAILED(0, "用户名或密码错误"),
 
@@ -12,6 +12,8 @@ public enum EnumJsonResult implements IEnum {
     REGISTER_SUCCESS(1, "注册成功"),
     REGISTER_MAX(2,"注册用户已达上限"),
     REGISTER_COPY(3,"注册用户已存在"),
+    REGISTER_SFZMHM_COPY(4,"身份证号码已注册"),
+    REGISTER_SJHM_COPY(5,"手机号码已注册"),
 
     PWD_INCORRECT(0,"旧密码不正确"),
     PWD_SUCCESS(1,"修改成功"),

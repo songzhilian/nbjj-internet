@@ -48,6 +48,9 @@ public class ShiroYdjwRealm extends AuthorizingRealm {
     protected AuthenticationInfo login(AuthenticationToken token) throws AuthenticationException{
         UsernamePasswordToken userToken = (UsernamePasswordToken)token;
         SysUser sysUser = sysUserService.getUserInfoByYhdm(userToken.getUsername());
+        if(sysUser == null){
+            sysUser = sysUserService.getAclUserInfoByYhdm(userToken.getUsername());
+        }
         UserInfo userInfo = new UserInfo();
         if(sysUser != null){
             SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(sysUser.getYhdm(), sysUser.getMm(), getName());

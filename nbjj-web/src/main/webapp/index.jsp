@@ -20,21 +20,18 @@
 
       function openBxgsSearch(){
          $("#logDg").dialog('open');
-         document.onkeydown = function(){
-             if(event.keyCode == "13"){
-                 login();
-             }
-         }
+//         login();
+      }
+      
+      function openZqmjSearch() {
+          $("#logZqmj").dialog('open');
+//          zqmjLogin();
       }
 
       function openLogin(){
           $("#regDg").dialog('close');
           $("#logDg").dialog('open');
-          document.onkeydown = function(){
-              if(event.keyCode == "13"){
-                  login();
-              }
-          }
+//          login();
       }
       function openRegister() {
 
@@ -58,6 +55,35 @@
           $("#regDg").dialog('open');
       }
 
+      function zqmjLogin(){
+          if($("#zqmj").val() == ""){
+              $.messager.alert('错误提示','警号不能为空','error');
+              return;
+          }
+          if($("#pwd").val() == ""){
+              $.messager.alert('错误提示','密码不能为空','error');
+              return ;
+          }
+          var data = $("#zqmjForm").serializeObject();
+          $.ajax({
+              type:"post",
+              url:'${ctx}/bxlogin/login',
+              data:JSON.stringify(data),
+              dataType:'text',
+              processData:false,
+              contentType:'application/json',
+              success:function(data){
+                  var result = JSON.parse(data);
+                  if(result.status == 0){
+                      $.messager.alert('错误提示',result.message,'error');
+                  } else if(result.status == 2) {
+                      $("#logZqmj").dialog('close');
+                      window.location.href = "${ctx}/acd/zqmj/search";
+                  }
+              }
+          });
+      }
+
       function login(){
           if($("#yhdm").val() == ""){
             $.messager.alert('错误提示','用户名不能为空','error');
@@ -67,9 +93,6 @@
             $.messager.alert('错误提示','密码不能为空','error');
             return ;
           }
-          //保存用户名密码至cookie
-          $.cookie('yhdm',$("#yhdm").val(),{path: '/acd/bxgs/search'});
-          $.cookie('mm',$("#mm").val(),{path:'/acd/bxgs/search'});
           var data = $("#ff").serializeObject();
             $.ajax({
                 type:"post",
@@ -95,7 +118,18 @@
               $.messager.alert("错误提示","保险公司不能为空","error");
               return;
           }
-
+          if($("#xm").val() ==""){
+              $.messager.alert("错误提示","姓名不能为空","error");
+              return;
+          }
+          if($("#sfzmhm").val() == ""){
+              $.messager.alert("错误提示","身份证明号码不能为空","error");
+              return;
+          }
+          if($("#sjhm").val() == ""){
+              $.messager.alert("错误提示","手机号码不能为空","error");
+              return;
+          }
           if($("#username").val() ==""){
               $.messager.alert("错误提示","用户名不能为空","error");
               return;
@@ -106,6 +140,17 @@
           }
           if($("#passwordConfirm").val() != $("#password").val()){
               $.messager.alert("错误提示","确认密码和密码不一致","error");
+              return;
+          }
+          var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+          if(reg.test($("#sfzmhm").val()) === false)
+          {
+              $.messager.alert("错误提示","您输入的身份证输入不合法","error");
+              return;
+          }
+          var regPhone = /^1(3[0-9]|4[5,7]|5[0,1,2,3,5,6,7,8,9]|6[2,5,6,7]|7[0,1,7,8]|8[0-9]|9[1,8,9])\d{8}$/;
+          if(!regPhone.test($("#sjhm").val())){
+              $.messager.alert("错误提示","您输入的手机号码不合法","error");
               return;
           }
           var regex = new RegExp('(?=.*[0-9])(?=.*[a-zA-Z]).{8,20}');
@@ -159,9 +204,36 @@
         <td align="left">
             <a href="#" class="easyui-linkbutton"  data-options="size:'large'" onclick="openBxgsSearch()" style="width: 180px;">保险公司查询入口</a>
         </td>
+        <td width="100px">
+        </td>
+        <td align="left">
+            <a href="#" class="easyui-linkbutton"  data-options="size:'large'" onclick="openZqmjSearch()" style="width: 180px;">交警查询入口</a>
+        </td>
     </tr>
 </table>
-<div id="logDg" class="easyui-dialog" title="登录窗口" data-options="modal:true,closed:true"
+<div id="logZqmj" class="easyui-dialog" title="交警登录窗口" data-options="modal:true,closed:true"
+     style="width:400px;height:270px;padding:10px;" >
+    <form id="zqmjForm"  method="post">
+        <div style="height: 20px"></div>
+        <table  align="center" valign="middle">
+            <tr style="padding: 10px">
+                <td style="font-size: 15px;font-family: 宋体;font-weight:bold;">用户名:</td>
+                <td><input id="zqmj" class="easyui-textbox" type="text" name="yhdm" style="width:220px;height:35px;" data-options="iconCls:'icon-man',iconWidth:38" ></input></td>
+            </tr>
+
+            <tr>
+                <td style="font-size: 15px;font-family: 宋体;font-weight:bold;">密码:</td>
+                <td><input id="pwd" class="easyui-textbox" type="password" name="mm" style="width: 220px;height:35px;" data-options="iconCls:'icon-lock',iconWidth:38"></input>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <div style="text-align:center;padding:20px">
+        <a href="javascript:void(0)" class="easyui-linkbutton"  onclick="zqmjLogin()" style="padding:5px 0px;width: 290px" >登录</a>
+    </div>
+</div>
+
+<div id="logDg" class="easyui-dialog" title="保险公司人员登录窗口" data-options="modal:true,closed:true"
      style="width:400px;height:270px;padding:10px;" >
   <form id="ff"  method="post">
     <div style="height: 20px"></div>
@@ -186,8 +258,8 @@
   </div>
 </div>
 
-<div id="regDg" class="easyui-dialog" title="注册窗口" data-options="modal:true,closed:true"
-     style="width:400px;height:350px;padding:10px;" >
+<div id="regDg" class="easyui-dialog" title="保险公司人员注册窗口" data-options="modal:true,closed:true"
+     style="width:400px;height:450px;padding:10px;" >
     <form id="register"  method="post">
         <div style="height: 20px"></div>
         <table  align="center" valign="middle">
@@ -197,23 +269,38 @@
                             class="easyui-combobox"
                             style="width:220px;height:35px;" editable="false"></select></td>
             </tr>
+            <tr padding="10px">
+                <td style="font-size: 15px; font-family: 宋体;font-weight: bold">姓名:</td>
+                <td><input id="xm" class="easyui-textbox" type="text" name="xm" style="width: 220px;height: 35px;"
+                            data-options="iconCls: 'icon-man',iconWidth:38"/></td>
+            </tr>
+            <tr padding="10px">
+                <td style="font-size: 15px; font-family: 微软雅黑;font-weight: bold">身份证号:</td>
+                <td><input id="sfzmhm" class="easyui-textbox" type="text" name="sfzmhm" style="width: 220px;height: 35px;"
+                            data-options="iconCls: 'icon-man',iconWidth:38"/></td>
+            </tr>
+            <tr padding="10px">
+                <td style="font-size: 15px;font-family: 宋体;font-weight: bold">手机号码:</td>
+                <td><input id="sjhm" class="easyui-textbox" type="tel" name="qsip" style="width: 220px;height: 35px;"
+                            data-options="iconCls: 'icon-man',iconWidth:38"/></td>
+            </tr>
             <tr style="padding: 10px">
                 <td style="font-size: 15px;font-family: 宋体;font-weight:bold;">用户名:</td>
                 <td><input id="username" class="easyui-textbox" type="text" name="yhdm" style="width:220px;height:35px;"
-                           data-options="iconCls:'icon-man',iconWidth:38" ></input></td>
+                           data-options="iconCls:'icon-man',iconWidth:38" /></td>
             </tr>
 
             <tr>
                 <td style="font-size: 15px;font-family: 宋体;font-weight:bold;">密码:</td>
                 <td><input id="password" class="easyui-textbox" type="password" name="mm" style="width: 220px;height:35px;"
-                           data-options="iconCls:'icon-lock',iconWidth:38"></input>
+                           data-options="iconCls:'icon-lock',iconWidth:38"/>
                 </td>
             </tr>
 
             <tr>
                 <td style="font-size: 15px;font-family: 宋体;font-weight:bold;">确认密码:</td>
                 <td><input id="passwordConfirm" class="easyui-textbox" type="password" style="width: 220px;height:35px;"
-                           data-options="iconCls:'icon-lock',iconWidth:38"></input>
+                           data-options="iconCls:'icon-lock',iconWidth:38"/>
                 </td>
             </tr>
         </table>

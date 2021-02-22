@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.security.Security;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -58,6 +59,19 @@ public class LoginController {
         }
         return new JsonResultDto(EnumJsonResult.LOGIN_SUCCESS.getValue(),""); //登录成功
     }
+    @RequestMapping(value="zqmjLogin")
+    @ResponseBody
+    public JsonResultDto zqmjLogin(@RequestBody LoginDto loginDto,HttpServletRequest request,HttpServletResponse response){
+        Subject user = SecurityUtils.getSubject();
+        UsernamePasswordToken token = new UsernamePasswordToken(loginDto.getYhdm(),MD5PwdUtil.encodePassword(loginDto.getMm()));
+        Subject subject = SecurityUtils.getSubject();
+        try{
+            subject.login(token);
+        }catch (Exception e){
+            return new JsonResultDto(EnumJsonResult.LOGIN_FAILED.getValue(),EnumJsonResult.LOGIN_FAILED.getText());
+        }
+        return new JsonResultDto(EnumJsonResult.ZQMJ_LOGIN_SCCESS.getValue(),"");
+    }
 
     @RequestMapping(value = "logout")
     public String logout(){
@@ -92,16 +106,25 @@ public class LoginController {
             return  new JsonResultDto(EnumJsonResult.REGISTER_COPY.getValue(), EnumJsonResult.REGISTER_COPY.getText());
             //用户名已存在
         }
+        //校验身份证号是否已使用
+        if(user.getSfzmhm().equals(sysUser.getSfzmhm())){
+            return  new JsonResultDto(EnumJsonResult.REGISTER_SFZMHM_COPY.getValue(),EnumJsonResult.REGISTER_SFZMHM_COPY.getText());
+        }
+        //校验手机号码是否已使用
+        if(user.getQsip().equals(sysUser.getQsip())){
+            return new JsonResultDto(EnumJsonResult.REGISTER_SJHM_COPY.getValue(),EnumJsonResult.REGISTER_SJHM_COPY.getText());
+        }
         //校验保险公司注册人数
         int count = sysUserService.queryAccountCountById(sysUser.getBxgsid());
         int maxCount = Integer.parseInt(AcdProperties.getString("acd_insure_person_count"));
-        if(count==maxCount){
+        if(count >= maxCount){
             return new JsonResultDto(EnumJsonResult.REGISTER_MAX.getValue(),EnumJsonResult.REGISTER_MAX.getText());
             //注册用户已达上限
         }
         //注册用户
         String mm = MD5PwdUtil.encodePassword(sysUser.getMm());
         sysUser.setMm(mm);
+        sysUser.setBmdm("330203000000");
         sysUser.setZt(Constants.BXGS_YHZT);
         sysUser.setGxsj(new Date());
         boolean flag = sysUserService.registerUser(sysUser);
@@ -116,7 +139,7 @@ public class LoginController {
     @RequestMapping(value = "updateUser")
     @ResponseBody
     public JsonResultDto updateAcdBxgsUser(@RequestBody LoginDto loginDto,HttpServletRequest request) {
-        Map map = new HashMap<String, Object>();;
+        Map map = new HashMap<String, Object>();
         SysUser user = sysUserService.getUserInfoByYhdm(loginDto.getYhdm());
         if(!user.getMm().equals(MD5PwdUtil.encodePassword(loginDto.getMm()))){
             return new JsonResultDto(EnumJsonResult.PWD_INCORRECT.getValue(),EnumJsonResult.PWD_INCORRECT.getText());

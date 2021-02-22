@@ -14,4 +14,6 @@ public interface ISysUserService {
     public int queryAccountCountById(Integer bxgsid);
 
     public boolean updateUser(SysUser sysUser);
+
+    public SysUser getAclUserInfoByYhdm(String yhdm);
 }

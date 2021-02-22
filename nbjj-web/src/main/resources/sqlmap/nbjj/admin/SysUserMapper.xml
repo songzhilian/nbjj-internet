@@ -16,8 +16,8 @@
         <result property="gxsj" column="gxsj"/>
     </resultMap>
     <insert id="insertUser">
-        insert into sys_user (yhdm,mm,zt,gxsj,bxgsid)values
-        (#{yhdm},#{mm},#{zt},#{gxsj},#{bxgsid})
+        insert into sys_user (yhdm,xm,bmdm,sfzmhm,mm,qsip,zt,gxsj,bxgsid)values
+        (#{yhdm},#{xm},#{bmdm},#{sfzmhm},#{mm},#{qsip},#{zt},#{gxsj},#{bxgsid})
     </insert>
     <update id="updateSysUser">
         update SYS_USER set mm = #{mm} where yhdm = #{yhdm}
@@ -30,6 +30,9 @@
     </select>
     <select id="getAccountCountById" resultType="java.lang.Integer">
         select count(1) from sys_user where bxgsid = #{bxgsid}
+    </select>
+    <select id="getAclUserByYhdm" resultType="com.sunland.nbjj.po.admin.SysUser">
+        select * from acl_user where yhdm = #{yhdm,jdbcType=VARCHAR}
     </select>
 
 </mapper>

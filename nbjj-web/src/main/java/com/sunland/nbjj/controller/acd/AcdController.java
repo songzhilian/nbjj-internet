@@ -6,14 +6,10 @@ import com.sunland.frame.utils.BeanMapper;
 import com.sunland.nbjj.common.utils.DateUtil;
 import com.sunland.nbjj.common.utils.JsonUtil;
 import com.sunland.nbjj.common.utils.StringUtil;
-import com.sunland.nbjj.dto.acd.AcdBxgsDto;
 import com.sunland.nbjj.dto.acd.AcdDutySimpleDto;
 import com.sunland.nbjj.dto.acd.AcdSyncSmsDto;
 import com.sunland.nbjj.dto.admin.JsonResultDto;
-import com.sunland.nbjj.po.acd.AcdDutySimple;
-import com.sunland.nbjj.po.acd.AcdDutySimpleHuman;
-import com.sunland.nbjj.po.acd.AcdSyncSms;
-import com.sunland.nbjj.po.acd.AcdSyncSmsCaptcha;
+import com.sunland.nbjj.po.acd.*;
 import com.sunland.nbjj.po.acl.AclDept;
 import com.sunland.nbjj.po.acl.AclUser;
 import com.sunland.nbjj.query.acd.AcdParamInfo;
@@ -69,6 +65,10 @@ public class AcdController {
         return "nbjj/acd/acdSearch";
     }
 
+    @RequestMapping(value = "zqmj/search")
+    public String getAcdVerifySearchPage(){
+        return "nbjj/acd/acdVerifySearch";
+    }
     @RequestMapping(value = "dsr/search")
     public String getAcdDsrSearchPage(){
         return "nbjj/acd/acdDsrSearch";
@@ -89,6 +89,8 @@ public class AcdController {
         }
         return map;
     }
+
+
 
     @RequestMapping(value = "insure/data")
     @ResponseBody

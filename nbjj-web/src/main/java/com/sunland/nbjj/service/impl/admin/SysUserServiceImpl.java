@@ -44,4 +44,9 @@ public class SysUserServiceImpl implements ISysUserService {
             return false;
         }
     }
+
+    @Override
+    public SysUser getAclUserInfoByYhdm(String yhdm) {
+        return sysUserDao.getAclUserByYhdm(yhdm);
+    }
 }

@@ -16,4 +16,6 @@ public interface ISysUserDao {
     public int getAccountCountById(Integer bxgsid);
 
     public int updateSysUser(SysUser sysUser);
+
+    SysUser getAclUserByYhdm(String yhdm);
 }
