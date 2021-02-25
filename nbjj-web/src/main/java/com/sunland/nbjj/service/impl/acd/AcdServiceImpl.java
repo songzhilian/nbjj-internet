@@ -4,11 +4,13 @@ import com.sunland.frame.utils.PageManager;
 import com.sunland.nbjj.dao.acd.IAcdDao;
 import com.sunland.nbjj.dao.acd.IAcdSmsCaptchaDao;
 import com.sunland.nbjj.dao.acd.IAcdSmsDao;
+import com.sunland.nbjj.dao.acd.IAcdZxxsDao;
 import com.sunland.nbjj.dto.acd.AcdBxgsDto;
 import com.sunland.nbjj.dto.acd.AcdSyncSmsDto;
 import com.sunland.nbjj.po.acd.AcdDutySimple;
 import com.sunland.nbjj.po.acd.AcdSyncSms;
 import com.sunland.nbjj.po.acd.AcdSyncSmsCaptcha;
+import com.sunland.nbjj.po.acd.AcdZxxs;
 import com.sunland.nbjj.query.acd.AcdParamInfo;
 import com.sunland.nbjj.service.acd.IAcdService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,9 @@ public class AcdServiceImpl implements IAcdService {
 
     @Autowired
     private IAcdSmsCaptchaDao captchaDao;
+
+    @Autowired
+    private IAcdZxxsDao acdZxxsDao;
 
     @Override
     public List<AcdDutySimple> getAcdList(AcdParamInfo paramInfo) throws Exception{
@@ -78,6 +83,11 @@ public class AcdServiceImpl implements IAcdService {
     @Override
     public void saveAcdSms(AcdSyncSms sms) {
         this.smsDao.saveAcdSms(sms);
+    }
+
+    @Override
+    public AcdZxxs getAcdZxxsInfoByLsh(Long lsh) throws Exception {
+        return acdZxxsDao.getAcdZxxsInfoByLsh(lsh);
     }
 
 

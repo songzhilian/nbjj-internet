@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sunland.nbjj.dao.acd.IAcdZxxsHumanDao">
+    <resultMap id="ResultMap" type="AcdZxxsHuman">
+        <result column="lsh" property="lsh"/>
+        <result column="rybh" property="rybh"/>
+        <result column="sgbh" property="sgbh"/>
+        <result column="jtfs" property="jtfs"/>
+        <result column="sfzmmc" property="sfzmmc"/>
+        <result column="sfzmhm" property="sfzmhm"/>
+        <result column="xm" property="xm"/>
+        <result column="dh" property="dh"/>
+        <result column="nl" property="nl"/>
+        <result column="xb" property="xb"/>
+        <result column="dabh" property="dabh"/>
+        <result column="zjcx" property="zjcx"/>
+        <result column="cclzrq" property="cclzrq"/>
+        <result column="hphm" property="hphm"/>
+        <result column="hpzl" property="hpzl"/>
+        <result column="bxgs" property="bxgs"/>
+        <result column="bxpzh" property="bxpzh"/>
+        <result column="clpp" property="clpp"/>
+        <result column="csys" property="csys"/>
+        <result column="cllx" property="cllx"/>
+        <result column="clsyxz" property="clsyxz"/>
+        <result column="jdcsyr" property="jdcsyr"/>
+        <result column="zy" property="zy"/>
+        <result column="pzbw" property="pzbw"/>
+        <result column="shcd" property="shcd"/>
+        <result column="sgzr" property="sgzr"/>
+        <result column="wfxw1" property="wfxw1"/>
+        <result column="wfxw2" property="wfxw2"/>
+        <result column="wfxw3" property="wfxw3"/>
+        <result column="yl1" property="yl1"/>
+        <result column="yl2" property="yl2"/>
+        <result column="yl3" property="yl3"/>
+    </resultMap>
+    <select id="getAcdZxxsHumamByLsh" resultType="com.sunland.nbjj.po.acd.AcdZxxsHuman">
+        select * from XGT_ACD_ZXXSHUMAN where lsh = #{lsh}
+    </select>
+
+
+</mapper>

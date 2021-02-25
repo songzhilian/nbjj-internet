@@ -67,7 +67,7 @@
           var data = $("#zqmjForm").serializeObject();
           $.ajax({
               type:"post",
-              url:'${ctx}/bxlogin/login',
+              url:'${ctx}/bxlogin/zqmjLogin',
               data:JSON.stringify(data),
               dataType:'text',
               processData:false,

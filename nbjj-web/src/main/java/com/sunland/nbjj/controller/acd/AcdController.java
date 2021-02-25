@@ -8,6 +8,7 @@ import com.sunland.nbjj.common.utils.JsonUtil;
 import com.sunland.nbjj.common.utils.StringUtil;
 import com.sunland.nbjj.dto.acd.AcdDutySimpleDto;
 import com.sunland.nbjj.dto.acd.AcdSyncSmsDto;
+import com.sunland.nbjj.dto.acd.AcdZxxsDto;
 import com.sunland.nbjj.dto.admin.JsonResultDto;
 import com.sunland.nbjj.po.acd.*;
 import com.sunland.nbjj.po.acl.AclDept;
@@ -15,6 +16,7 @@ import com.sunland.nbjj.po.acl.AclUser;
 import com.sunland.nbjj.query.acd.AcdParamInfo;
 import com.sunland.nbjj.service.acd.IAcdBxgsService;
 import com.sunland.nbjj.service.acd.IAcdService;
+import com.sunland.nbjj.service.acd.IAcdZxxsService;
 import com.sunland.nbjj.service.acl.IAclDeptService;
 import com.sunland.nbjj.service.acl.IAclUserService;
 import com.sunland.nbjj.service.sys.ISysDictService;
@@ -59,6 +61,9 @@ public class AcdController {
     @Autowired
     private IAcdBxgsService acdBxgsService;
 
+    @Autowired
+    private IAcdZxxsService acdZxxsService;
+
 
     @RequestMapping(value = "bxgs/search")
     public String getAcdSearchPage(){
@@ -90,7 +95,21 @@ public class AcdController {
         return map;
     }
 
-
+    @RequestMapping(value = "data/verifyList")
+    @ResponseBody
+    public Map<String,Object> getAcdVerifyDataList(HttpServletRequest request,AcdParamInfo paramInfo){
+        Map<String,Object> map = null;
+        try {
+            map = new HashMap<String,Object>();
+            List<AcdZxxs> acdZxxsList = acdZxxsService.getAcdZxxsVerifyList(paramInfo);
+            Integer total = acdZxxsService.getAcdZxxsVerifyTotal(paramInfo);
+            map.put("rows",acdZxxsList);
+            map.put("total",total);
+        } catch (Exception e) {
+            logger.error("getAcdVerifyDataList数据异常：传参："+JsonUtil.writeValueAsString(paramInfo),e);
+        }
+        return map;
+    }
 
     @RequestMapping(value = "insure/data")
     @ResponseBody
@@ -99,6 +118,49 @@ public class AcdController {
         List list = acdBxgsService.getAcdBxgsList();
         map.put("insureList",list);
         return  map;
+    }
+
+    @RequestMapping(value = "data/zxxsItem")
+    @ResponseBody
+    public AcdZxxsDto getAcdZxxsItem(Long lsh){
+        AcdZxxsDto acdZxxsDto = null;
+        try {
+            AcdZxxs acdZxxs = acdService.getAcdZxxsInfoByLsh(lsh);
+            if (acdZxxs != null){
+                acdZxxsDto = BeanMapper.map(acdZxxs,AcdZxxsDto.class);
+                if(acdZxxsDto != null){
+                    if (acdZxxsDto.getSgrdyy() != null && !acdZxxsDto.getSgrdyy().isEmpty()){
+                        acdZxxsDto.setSgrdyy(sysDictService.getSysDictValue(Constants.DMLB_SGRDYY,acdZxxsDto.getSgrdyy()));
+                    }
+                    if(acdZxxsDto.getList() != null && acdZxxsDto.getList().size()>0){
+                        for (int i = 0 ;i<acdZxxsDto.getList().size();i++){
+                            AcdZxxsHuman human = acdZxxsDto.getList().get(i);
+                            if(human.getWfxw1() != null && !human.getWfxw1().equals("")){
+                                human.setWfxw1(wfxwService.getWfnrByWfxw(human.getWfxw1()));
+                            }
+
+                            if(human.getWfxw2() != null && !human.getWfxw2().equals("")){
+                                human.setWfxw2(wfxwService.getWfnrByWfxw(human.getWfxw1()));
+                            }
+
+                            if(human.getWfxw3() != null && !human.getWfxw3().equals("")){
+                                human.setWfxw3(wfxwService.getWfnrByWfxw(human.getWfxw1()));
+                            }
+                            if(human.getCllx() != null && !human.getCllx().equals("")){
+                                human.setCllx(sysDictService.getSysDictValue(Constants.DMLB_CLLX, human.getCllx()));
+                            }
+                        }
+                    }
+                    acdZxxsDto.setSgfssjstr(DateUtil.getDate(acdZxxsDto.getSgfssj(),14));
+
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return acdZxxsDto;
     }
 
     @RequestMapping(value = "data/item")

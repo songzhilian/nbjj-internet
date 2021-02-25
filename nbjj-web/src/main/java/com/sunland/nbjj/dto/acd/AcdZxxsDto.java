@@ -1,17 +1,18 @@
-package com.sunland.nbjj.po.acd;
+package com.sunland.nbjj.dto.acd;
 
-import org.apache.ibatis.type.Alias;
+import com.sunland.nbjj.po.acd.AcdZxxsHuman;
 
 import java.util.Date;
 import java.util.List;
 
-@Alias("AcdZxxs")
-public class AcdZxxs {
+public class AcdZxxsDto {
+
     private Long lsh;//流水号
     private String zt;//状态
     private String sgbh;//事故编号
     private String xzqh;//行政区划
     private Date sgfssj;//事故发生时间
+    private String sgfssjstr;//事故发生时间str
     private String lh;//路号
     private String lm;//路名
     private Integer gls;//公里数
@@ -84,6 +85,14 @@ public class AcdZxxs {
 
     public void setSgfssj(Date sgfssj) {
         this.sgfssj = sgfssj;
+    }
+
+    public String getSgfssjstr() {
+        return sgfssjstr;
+    }
+
+    public void setSgfssjstr(String sgfssjstr) {
+        this.sgfssjstr = sgfssjstr;
     }
 
     public String getLh() {
@@ -283,7 +292,7 @@ public class AcdZxxs {
     }
 
     public void setPdams(String pdams) {
-        pdams = pdams;
+        this.pdams = pdams;
     }
 
     public Integer getZp() {
@@ -332,5 +341,13 @@ public class AcdZxxs {
 
     public void setGlbm(String glbm) {
         this.glbm = glbm;
+    }
+
+    public List<AcdZxxsHuman> getList() {
+        return list;
+    }
+
+    public void setList(List<AcdZxxsHuman> list) {
+        this.list = list;
     }
 }

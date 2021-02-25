@@ -5,6 +5,7 @@ import com.sunland.nbjj.dto.acd.AcdSyncSmsDto;
 import com.sunland.nbjj.po.acd.AcdDutySimple;
 import com.sunland.nbjj.po.acd.AcdSyncSms;
 import com.sunland.nbjj.po.acd.AcdSyncSmsCaptcha;
+import com.sunland.nbjj.po.acd.AcdZxxs;
 import com.sunland.nbjj.query.acd.AcdParamInfo;
 
 import java.util.List;
@@ -29,6 +30,8 @@ public interface IAcdService {
     public AcdSyncSmsCaptcha getAcdSmsCaptchaBySjhmYzm(AcdSyncSmsDto smsDto)throws Exception;
 
     public void saveAcdSms(AcdSyncSms sms)throws Exception;
+
+    public AcdZxxs getAcdZxxsInfoByLsh(Long lsh) throws Exception;
 
 
 }

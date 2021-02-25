@@ -487,3 +487,27 @@ function getSyxz(value){
         return '';
     }
 }
+
+function  getHj(value) {
+    var hj = '';
+    if(value == 1){
+        return '正常环境';
+    }else if(value == 2){
+        return '黑夜';
+    }else if(value == 3){
+        return '绿化遮挡视线';
+    }else if(value == 4){
+        return '信号灯故障';
+    }else if(value == 5){
+        return '施工路段';
+    }else if(value == 6){
+        return '标志信息与地面标识不符';
+    }else {
+        return '';
+    }
+}
+
+function getSglx(value) {
+    var sglx ='';
+
+}

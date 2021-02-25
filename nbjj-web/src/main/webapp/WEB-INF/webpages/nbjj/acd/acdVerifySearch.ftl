@@ -34,8 +34,8 @@
                 pageNumber: parseInt(pageNumber),
                 pageSize: parseInt(pageSize),
                 idField:'lsh',
-                height: '260px',
-                url:'${ctx}/acd/data/list',
+                height: '420px',
+                url:'${ctx}/acd/data/verifyList',
                 onClickRow: subDataGrid,
                 frozenColumns:[[
 
@@ -141,7 +141,7 @@
 
         //子项菜单
         function subDataGrid(index, row){
-            $.post("${ctx}/acd/data/item",{lsh:row.lsh},function(data){
+            $.post("${ctx}/acd/data/zxxsItem",{lsh:row.lsh},function(data){
                 if(data != null) {
                     row = data;
                     $("#acdInfo").panel({content:showAcdInfo(row)}); //加入面板内容
@@ -151,7 +151,7 @@
                         pagination:false,
                         singleSelect: true,
                         rownumbers: true,
-                        data:row.acdDutyHumanList,
+                        data:row.list,
                         fitColumns: false,
                         loadMsg: '',
                         height: 'auto',
@@ -216,8 +216,8 @@
             html += '<tr style="width: 1000px">';
             html += '<td style="font-size: 12px;width:80px;" align="right">事故地点:</td>';
             html += '<td style="width: 180px"><input class="easyui-textbox" type="text" name="name" style="width:180px;height:25px;" value="'+convertNullStr(row.sgdd)+'" editable="false"></input></td>';
-            html += '<td style="font-size: 12px;width:100px;" align="right">受伤人数:</td>';
-            html += '<td style="width: 180px"> <input class="easyui-textbox" type="text" name="name" style="width:180px;height:25px;" value="'+convertNullStr(row.ssrs)+'" editable="false"></input></td>';
+            html += '<td style="font-size: 12px;width:100px;" align="right">路况路段类型:</td>';
+            html += '<td style="width: 180px"> <input class="easyui-textbox" type="text" name="name" style="width:180px;height:25px;" value="'+convertNullStr(row.lkldlx)+'" editable="false"></input></td>';
             html += '<td style="font-size: 12px;width:80px;" align="right">公里数:</td>';
             html += '<td style="width: 200px"><input class="easyui-textbox" type="text" name="name" style="width:200px;height:25px;" value="'+convertNullStr(row.gls)+'" editable="false"></input></td>';
             html += '<td style="font-size: 12px;width:80px;" align="right">米数:</td>';
@@ -225,18 +225,18 @@
             html += ' </tr>';
 
             html += '<tr style="width: 1000px">';
-            html += '<td style="font-size: 12px;width:80px;" align="right">财产损失:</td>';
-            html += '<td style="width: 180px"><input class="easyui-textbox" type="text" name="name" style="width:180px;height:25px;" value="'+convertNullStr(row.zjccss)+'" editable="false"></input></td>';
-            html += '<td style="font-size: 12px;width:100px;" align="right">认定原因:</td>';
-            html += '<td style="width: 180px"> <input class="easyui-textbox" type="text" name="name" style="width:180px;height:25px;" value="'+convertNullStr(row.sgrdyy)+'" editable="false"></input></td>';
+            html += '<td style="font-size: 12px;width:80px;" align="right">路况方向:</td>';
+            html += '<td style="width: 180px"><input class="easyui-textbox" type="text" name="name" style="width:180px;height:25px;" value="'+convertNullStr(row.lkfx)+'" editable="false"></input></td>';
+            html += '<td style="font-size: 12px;width:100px;" align="right">电子坐标:</td>';
+            html += '<td style="width: 180px"> <input class="easyui-textbox" type="text" name="name" style="width:180px;height:25px;" value="'+convertNullStr(row.dzzb)+'" editable="false"></input></td>';
             html += '<td style="font-size: 12px;width:80px;" align="right">天气:</td>';
             html += '<td style="width: 200px"><input class="easyui-textbox" type="text" name="name" style="width:200px;height:25px;" value="'+getDict_Tq(row.tq)+'" editable="false"></input></td>';
-            html += '<td style="font-size: 12px;width:80px;" align="right">道路类型:</td>';
-            html += '<td style="width: 120px"><input class="easyui-textbox" type="text" name="name" style="width:120px;height:25px;" value="'+getDllx(row.dllx)+'" editable="false"></input></td>';
+            html += '<td style="font-size: 12px;width:80px;" align="right">环境:</td>';
+            html += '<td style="width: 120px"><input class="easyui-textbox" type="text" name="name" style="width:120px;height:25px;" value="'+getHj(row.hj)+'" editable="false"></input></td>';
             html += ' </tr>';
 
             html += '<tr style="width: 1000px">';
-            html += '<td style="font-size: 12px;width:80px;" align="right">公路等级:</td>';
+            html += '<td style="font-size: 12px;width:80px;" align="right">事故类型:</td>';
             html += '<td style="width: 180px"><input class="easyui-textbox" type="text" name="name" style="width:180px;height:25px;" value="'+getGlxzdj(row.glxzdj)+'" editable="false"></input></td>';
             html += '<td style="font-size: 12px;width:100px;" align="right">现场:</td>';
             html += '<td style="width: 180px"> <input class="easyui-textbox" type="text" name="name" style="width:180px;height:25px;" value="'+getXc(row.xc)+'" editable="false"></input></td>';
@@ -391,11 +391,11 @@
     </div>
 </div>
     <div id="tabId" style="width: 80%;margin:0px auto;height: 250px;" class="easyui-tabs">
-        <div title="事故信息" style="padding:10px">
+        <div title="事故自行协商" style="padding:10px">
             <table id="acdInfo"></table>
         </div>
 
-        <div title="事故人员信息" style="width: 100%;padding:10px">
+        <div title="事故自行协商人员信息" style="width: 100%;padding:10px">
             <table id="acdRyInfo" style="width: 100%"></table>
         </div>
     </div>
