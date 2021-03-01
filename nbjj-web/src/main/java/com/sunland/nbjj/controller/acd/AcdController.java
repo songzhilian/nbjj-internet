@@ -130,8 +130,9 @@ public class AcdController {
                 acdZxxsDto = BeanMapper.map(acdZxxs,AcdZxxsDto.class);
                 if(acdZxxsDto != null){
                     if (acdZxxsDto.getSgrdyy() != null && !acdZxxsDto.getSgrdyy().isEmpty()){
-                        acdZxxsDto.setSgrdyy(sysDictService.getSysDictValue(Constants.DMLB_SGRDYY,acdZxxsDto.getSgrdyy()));
+                        acdZxxsDto.setSgrdyy(sysDictService.getSysDictValue(Constants.DMLB_SGRDYY_BXGS,acdZxxsDto.getSgrdyy()));
                     }
+
                     if(acdZxxsDto.getList() != null && acdZxxsDto.getList().size()>0){
                         for (int i = 0 ;i<acdZxxsDto.getList().size();i++){
                             AcdZxxsHuman human = acdZxxsDto.getList().get(i);
@@ -149,10 +150,10 @@ public class AcdController {
                             if(human.getCllx() != null && !human.getCllx().equals("")){
                                 human.setCllx(sysDictService.getSysDictValue(Constants.DMLB_CLLX, human.getCllx()));
                             }
+//                            if(human)
                         }
                     }
                     acdZxxsDto.setSgfssjstr(DateUtil.getDate(acdZxxsDto.getSgfssj(),14));
-
                 }
             }
 
@@ -370,6 +371,17 @@ public class AcdController {
             return new JsonResultDto(EnumJsonResult.SMS_SEND_FAILED.getValue(),EnumJsonResult.SMS_SEND_FAILED.getText());
         }
         return new JsonResultDto(EnumJsonResult.SMS_SEND_SUCCESS.getValue(),EnumJsonResult.SMS_SEND_SUCCESS.getText());
+    }
+    @RequestMapping(value = "data/verifyZxxs")
+    @ResponseBody
+    public JsonResultDto updateAcdZxxs(AcdZxxsDto acdZxxsDto){
+        try {
+            acdZxxsService.verifyZxxs(acdZxxsDto);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new JsonResultDto(EnumJsonResult.ACD_ZXXS_FAILED.getValue(),EnumJsonResult.ACD_ZXXS_FAILED.getText());
+        }
+        return new JsonResultDto(EnumJsonResult.ACD_ZXXS_SUCCESS.getValue(),EnumJsonResult.ACD_ZXXS_SUCCESS.getText());
     }
 
 }

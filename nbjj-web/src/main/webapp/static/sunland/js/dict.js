@@ -403,7 +403,7 @@ function getHpzl(value, row, index){
  */
 function getCsys(value){
     var csys = '';
-    if(value != ''){
+    if(value != '' && value != null){
         if(value.indexOf('A')!=-1){
             csys += '白';
         }
@@ -507,7 +507,49 @@ function  getHj(value) {
     }
 }
 
-function getSglx(value) {
-    var sglx ='';
+/**
+ * 事故严重程度
+ * @param value
+ */
+function getSgyzcd(value) {
+    if(value == 1){
+        return '财产事故';
+    }else if(value == 2){
+        return '伤人事故';
+    }else if(value == 3){
+        return '死亡事故';
+    }else {
+        return '';
+    }
+}
 
+/**
+ * 事故处理方式
+ * @param vlaue
+ */
+function getSgclfs(value) {
+    if(value == 1){
+        return '自行协商';
+    }else if(value == 2){
+        return '微信处理';
+    }else if(value == 3){
+        return '12123处理';
+    }else if(value == 4){
+        return '事后处理';
+    }else {
+        return '';
+    }
+}
+
+/**
+ * 赔偿履行方式
+ */
+function getPclxfs(value) {
+    if(value == 1){
+        return '当事人自行赔偿';
+    }else if(value == 2){
+        return '保险公司赔偿';
+    }else{
+        return '';
+    }
 }

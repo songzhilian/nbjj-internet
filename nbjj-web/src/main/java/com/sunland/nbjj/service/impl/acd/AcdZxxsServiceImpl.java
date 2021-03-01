@@ -2,6 +2,7 @@ package com.sunland.nbjj.service.impl.acd;
 
 import com.sunland.frame.utils.PageManager;
 import com.sunland.nbjj.dao.acd.IAcdZxxsDao;
+import com.sunland.nbjj.dto.acd.AcdZxxsDto;
 import com.sunland.nbjj.po.acd.AcdZxxs;
 import com.sunland.nbjj.query.acd.AcdParamInfo;
 import com.sunland.nbjj.service.acd.IAcdZxxsService;
@@ -33,5 +34,10 @@ public class AcdZxxsServiceImpl implements IAcdZxxsService{
     @Override
     public Integer getAcdZxxsVerifyTotal(AcdParamInfo acdParamInfo) throws Exception {
         return acdZxxsDao.getAcdZxxsVerifyCount(acdParamInfo);
+    }
+
+    @Override
+    public void verifyZxxs(AcdZxxsDto acdZxxsDto) throws Exception {
+        acdZxxsDao.updateAcdZxxs(acdZxxsDto);
     }
 }

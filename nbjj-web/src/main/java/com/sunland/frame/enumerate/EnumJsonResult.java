@@ -21,6 +21,8 @@ public enum EnumJsonResult implements IEnum {
 
     SMS_SEND_SUCCESS(1, "发送成功"),
     SMS_SEND_FAILED(0, "发送失败"),
+    ACD_ZXXS_SUCCESS(1,"操作成功"),
+    ACD_ZXXS_FAILED(0,"操作失败"),
 
     ACD_SJHM_EXISTS(1, ""),
     ACD_SJHM_NOTEXISTS(0, "该事故不存在该手机号码"),

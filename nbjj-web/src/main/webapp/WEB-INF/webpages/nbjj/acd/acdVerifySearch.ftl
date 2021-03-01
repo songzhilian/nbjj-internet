@@ -45,11 +45,10 @@
                 ]],
                 columns: [
                     [
-                        {field:'lsh',hidden:true},
                         {field: 'sgdd', title: '事故地点',width:220,align:'center'},
-                        {field: 'sgss', title: '事故事实',width:300,align:'center'},
-                        {field: 'zrtjjg', title: '调解结果',width:300,align:'center'},
-                        {field: 'yl2', title: '简易事故类型',width:100,align:'center',formatter:getSglx}
+                        {field: 'yl2', title: '简易事故类型',width:100,align:'center',formatter:getSglx},
+                        {field: 'zt',title: '状态',width:100,align: 'center',formatter: getZt},
+                        {field: 'lsh',title: '操作',width: 100,align: 'center',formatter: operateBtn}
                     ]
                 ],
                 toolbar:$("#tb")
@@ -64,7 +63,69 @@
                 });
             }
         }
+        
+        function operateBtn(value,row,index) {
+            var actions = [];
+            var str1 = '<a  href="#" rel="external nofollow" name="view" class="easyui-linkbutton" id="agree" ' +
+                    'onclick="agree('
+                    + value
+                    + ')">通过</a>';
+            var str2 = '<a  href="#" rel="external nofollow" name="view" class="easyui-linkbutton" id="disagree" ' +
+                    'onclick="disagree('
+                    + value
+                    + ')">不通过</a>';
+            if(row.zt == '2'){
+                actions.push(str1);
+                actions.push(str2);
+                actions.join('  |  ');
+            }else {
+                actions.push('已审核');
+            }
+            return actions;
+        }
 
+        function agree(index){
+            $.ajax({
+                type: 'post',
+                url: '${ctx}/acd/data/verifyZxxs',
+                data: {lsh:index,zt: '3',yl2:''},
+                success: function (data) {
+                    $('#acdDg').datagrid('reload');
+                    if(data.status ==1){
+                        $.messager.alert("成功提示",data.message,"success");
+                    }else{
+                        $.messager.alert("错误提示",data.message,"error");
+                    }
+                }
+            })
+        }
+        function disagree(index){
+            $("#disagreeDg").dialog('open');
+            $("#lsh").val(index);
+        }
+
+        function updateZxxsVerify(){
+            var lsh = $("#lsh").val();
+            var yl2 = $("#yl2").val();
+            if(yl2 == ""){
+                $.messager.alert("错误提示",'审核不通过时，需输入原因','error');
+                return;
+            }
+            $.ajax({
+                type: 'post',
+                url: '${ctx}/acd/data/verifyZxxs',
+                data: {lsh:lsh,zt:'4',yl2: yl2},
+                success: function (data) {
+                    $('#acdDg').datagrid('reload');
+                    $("#disagreeDg").dialog('close');
+                    if(data.status ==1){
+                        $.messager.alert("成功提示",data.message,"success");
+                    }else{
+                        $.messager.alert("错误提示",data.message,"error");
+                    }
+                }
+            })
+        }
         function getDate(value, row, index) {
             if (value) {
                 return new Date(value).format('yyyy-MM-dd hh:mm:ss');
@@ -128,7 +189,73 @@
             }
         }
 
+        function  getZy(value) {
+            if(value == '1'){
+                return '快递';
+            }else if(value == '2'){
+                return '外卖';
+            }else if(value == '3'){
+                return '公交车';
+            }else if(value == '4'){
+                return '出租车';
+            }else if(value == '5'){
+                return '网约车'
+            }else if(value == '6'){
+                return '校车';
+            }else if(value == '7'){
+                return '工程车';
+            }else if(value == '8'){
+                return '危化品运输车';
+            }else if(value =='9'){
+                return '其他';
+            }
+        }
 
+        function  getShcd(value) {
+            if(value == '1'){
+                return '死亡';
+            }else if(value == '2'){
+                return '重伤';
+            }else if(value == '3'){
+                return '轻伤';
+            }else if(value == '4'){
+                return '不明';
+            }else if(value == '5'){
+                return '无伤害';
+            }
+        }
+
+        function getLkldlx(value){
+            if(value == '1'){
+                return '路段';
+            }else if(value == '2'){
+                return '交叉口';
+            }else if(value == '3'){
+                return '高架';
+            }else if(value == '4'){
+                return '匝道口';
+            }else if(value == '5'){
+                return '停车场';
+            }else if(value == '6'){
+                return '小区';
+            }else if(value == '9'){
+                return '其他';
+            }else {
+                return '';
+            }
+        }
+
+        function getZt(value){
+            if(value == '2'){
+                return '未审核';
+            }else if(value =='3'){
+                return '通过';
+            }else if(value =='4'){
+                return '不通过';
+            }else {
+                return '';
+            }
+        }
 
         function resetForm(){
             $("#frmSearch").form('clear');
@@ -169,22 +296,14 @@
                             [
                                 {field: 'xb', title: '性别',width: 100,align:'center',formatter:getXb},
                                 {field: 'nl', title: '年龄', formatter: parseInteger,width: 80,align:'center'},
-                                {field: 'zz', title: '住址', width: 250,align:'center'},
-                                {field: 'wfxw1', title: '违法行为1', width: 300,align:'center'},
-                                {field: 'wfxw2', title: '违法行为2', width: 300,align:'center'},
-                                {field: 'wfxw3', title: '违法行为3', width: 300,align:'center'},
-                                {field: 'jtfs', title: '交通方式',width: 100,align:'center',formatter:getDict_AcdJtfs},
-                                {field: 'dabh', title: '档案编号',width: 100,align:'center'},
+                                {field: 'zy', title: '职业', width: 250,align:'center',formatter: getZy},
+                                {field: 'pzbw', title: '碰撞部位',width: 100,align:'center'},
+                                {field: 'shcd', title: '伤害程度',width: 100,align:'center',formatter:getShcd},
                                 {field: 'zjcx', title: '准驾车型',width: 100,align:'center'},
-                                {field: 'fzjg', title: '发证机关',width: 100,align:'center'},
-                                {field: 'fdjh', title: '发动机号',width: 150,align:'center'},
-                                {field: 'clsbdh', title: '车架号',width: 150,align:'center'},
                                 {field: 'clpp', title: '车辆品牌',width: 150,align:'center'},
                                 {field: 'clxh', title: '车辆型号',width: 150,align:'center'},
-                                {field: 'csys', title: '车身颜色',width: 100,align:'center',formatter:getCsys},
                                 {field: 'cllx', title: '车辆类型',width: 150,align:'center'},
                                 {field: 'jdcsyr', title: '机动车所有人',width: 150,align:'center'},
-                                {field: 'clsyxz', title: '车辆使用性质',width: 100,align:'center',formatter:getSyxz},
                                 {field: 'bxgs', title: '保险公司',width: 200,align:'center'},
                                 {field: 'bxpzh', title: '保险凭证号',width: 150,align:'center'}
 
@@ -217,7 +336,8 @@
             html += '<td style="font-size: 12px;width:80px;" align="right">事故地点:</td>';
             html += '<td style="width: 180px"><input class="easyui-textbox" type="text" name="name" style="width:180px;height:25px;" value="'+convertNullStr(row.sgdd)+'" editable="false"></input></td>';
             html += '<td style="font-size: 12px;width:100px;" align="right">路况路段类型:</td>';
-            html += '<td style="width: 180px"> <input class="easyui-textbox" type="text" name="name" style="width:180px;height:25px;" value="'+convertNullStr(row.lkldlx)+'" editable="false"></input></td>';
+            html += '<td style="width: 180px"> <input class="easyui-textbox" type="text" name="name" ' +
+                    'style="width:180px;height:25px;" value="'+getLkldlx(row.lkldlx)+'" editable="false"></input></td>';
             html += '<td style="font-size: 12px;width:80px;" align="right">公里数:</td>';
             html += '<td style="width: 200px"><input class="easyui-textbox" type="text" name="name" style="width:200px;height:25px;" value="'+convertNullStr(row.gls)+'" editable="false"></input></td>';
             html += '<td style="font-size: 12px;width:80px;" align="right">米数:</td>';
@@ -238,37 +358,57 @@
             html += '<tr style="width: 1000px">';
             html += '<td style="font-size: 12px;width:80px;" align="right">事故类型:</td>';
             html += '<td style="width: 180px"><input class="easyui-textbox" type="text" name="name" style="width:180px;height:25px;" value="'+getGlxzdj(row.glxzdj)+'" editable="false"></input></td>';
-            html += '<td style="font-size: 12px;width:100px;" align="right">现场:</td>';
-            html += '<td style="width: 180px"> <input class="easyui-textbox" type="text" name="name" style="width:180px;height:25px;" value="'+getXc(row.xc)+'" editable="false"></input></td>';
+            html += '<td style="font-size: 12px;width:100px;" align="right">事故认定原因:</td>';
+            html += '<td style="width: 180px"> <input class="easyui-textbox" type="text" name="name" ' +
+                    'style="width:180px;height:25px;" value="'+convertNullStr(row.sgrdyy)+'" ' +
+                    'editable="false"></input></td>';
             html += '<td style="font-size: 12px;width:80px;" align="right">事故形态:</td>';
             html += '<td style="width: 200px"><input class="easyui-textbox" type="text" name="name" style="width:200px;height:25px;" value="'+getSgxt(row.sgxt)+'" editable="false"></input></td>';
-            html += '<td style="font-size: 12px;width:80px;" align="right">车辆间事故:</td>';
-            html += '<td style="width: 120px"><input class="easyui-textbox" type="text" name="name" style="width:120px;height:25px;" value="'+getCljsg(row.cljsg)+'" editable="false"></input></td>';
+            html += '<td style="font-size: 12px;width:80px;" align="right">事故严重程度:</td>';
+            html += '<td style="width: 120px"><input class="easyui-textbox" type="text" name="name" ' +
+                    'style="width:120px;height:25px;" value="'+getSgyzcd(row.sgyzcd)+'" editable="false"></input></td>';
             html += ' </tr>';
 
             html += '<tr style="width: 1000px">';
-            html += '<td style="font-size: 12px;width:80px;" align="right">单车事故:</td>';
-            html += '<td style="width: 180px"><input class="easyui-textbox" type="text" name="name" style="width:180px;height:25px;" value="'+getDcsg(row.dcsg)+'" editable="false"></input></td>';
-            html += '<td style="font-size: 12px;width:100px;" align="right">接案人:</td>';
-            html += '<td style="width: 180px"> <input class="easyui-textbox" type="text" name="name" style="width:180px;height:25px;" value="'+convertNullStr(row.jar1)+'" editable="false"></input></td>';
-            html += '<td style="font-size: 12px;width:80px;" align="right">经办人:</td>';
-            html += '<td style="width: 200px"><input class="easyui-textbox" type="text" name="name" style="width:200px;height:25px;" value="'+convertNullStr(row.jbr)+'" editable="false"></input></td>';
-            html += '<td style="font-size: 12px;width:80px;" align="right">调解方式:</td>';
-            html += '<td style="width: 120px"><input class="easyui-textbox" type="text" name="name" style="width:120px;height:25px;" value="'+getTjfs(row.tjfs)+'" editable="false"></input></td>';
+            html += '<td style="font-size: 12px;width:80px;" align="right">事故处理方式:</td>';
+            html += '<td style="width: 180px"><input class="easyui-textbox" type="text" name="name" ' +
+                    'style="width:180px;height:25px;" value="'+getSgclfs(row.sgclfs)+'" editable="false"></input></td>';
+            html += '<td style="font-size: 12px;width:100px;" align="right">赔偿履行方式:</td>';
+            html += '<td style="width: 180px"> <input class="easyui-textbox" type="text" name="name" ' +
+                    'style="width:180px;height:25px;" value="'+getPclxfs(row.pclxfs)+'" editable="false"></input></td>';
+            html += '<td style="font-size: 12px;width:80px;" align="right">采集民警:</td>';
+            html += '<td style="width: 200px"><input class="easyui-textbox" type="text" name="name" ' +
+                    'style="width:200px;height:25px;" value="'+convertNullStr(row.cjmj)+'" ' +
+                    'editable="false"></input></td>';
+            html += '<td style="font-size: 12px;width:80px;" align="right">执勤民警:</td>';
+            html += '<td style="width: 120px"><input class="easyui-textbox" type="text" name="name" ' +
+                    'style="width:120px;height:25px;" value="'+convertNullStr(row.zqmj)+'" ' +
+                    'editable="false"></input></td>';
             html += ' </tr>';
 
             html += '<tr style="width: 1000px">';
-            html += '<td style="font-size: 12px;width:80px;" align="right">结案方式:</td>';
-            html += '<td style="width: 180px"><input class="easyui-textbox" type="text" name="name" style="width:180px;height:25px;" value="'+getJafs(row.jafs)+'" editable="false"></input></td>';
-            html += '<td style="font-size: 12px;width:100px;" align="right">调解结果:</td>';
-            html += '<td style="width: 520px" colspan="3"> <input class="easyui-textbox" type="text" name="name" style="width:520px;height:25px;" value="'+convertNullStr(row.zrtjjg)+'" editable="false"></input></td>';
-            html += '<td style="font-size: 12px;width:80px;" align="right">受理时间:</td>';
-            html += '<td style="width: 120px"><input class="easyui-textbox" type="text" name="name" style="width:120px;height:25px;" value="'+getDate(row.slsj)+'" editable="false"></input></td>';
+            html += '<td style="font-size: 12px;width:80px;" align="right">开单时间:</td>';
+            html += '<td style="width: 180px"><input class="easyui-textbox" type="text" name="name" ' +
+                    'style="width:180px;height:25px;" value="'+getDate(row.kdsj)+'" editable="false"></input></td>';
+            html += '<td style="font-size: 12px;width:100px;" align="right">录入时间:</td>';
+            html += '<td style="width: 180px" colspan="3"> <input class="easyui-textbox" type="text" name="name" ' +
+                    'style="width:520px;height:25px;" value="'+getDate(row.lrsj)+'" ' +
+                    'editable="false"></input></td>';
+            html += '<td style="font-size: 12px;width:80px;" align="right">照片数量:</td>';
+            html += '<td style="width: 180px"><input class="easyui-textbox" type="text" name="name" ' +
+                    'style="width:120px;height:25px;" value="'+convertNullStr(row.zp)+'" ' +
+                    'editable="false"></input></td>';
+//            html += '<td style="font-size: 12px;width:80px;" align="right">人员数量:</td>';
+//            html += '<td style="width: 180px"><input class="easyui-textbox" type="text" name="name" ' +
+//                    'style="width:120px;height:25px;" value="'+convertNullStr(row.rysl)+'" ' +
+//                    'editable="false"></input></td>';
             html += ' </tr>';
 
             html += '<tr style="width: 1000px">';
-            html += '<td style="font-size: 12px;width:80px;" align="right">事故事实:</td>';
-            html += '<td style="width: 810px" colspan="7"><input class="easyui-textbox" type="text" name="name" style="width:810px;height:25px;" value="'+convertNullStr(row.sgss)+'" editable="false"></input></td>';
+            html += '<td style="font-size: 12px;width:80px;" align="right">赔偿履行方式描述:</td>';
+            html += '<td style="width: 810px" colspan="7"><input class="easyui-textbox" type="text" name="name" ' +
+                    'style="width:810px;height:25px;" value="'+convertNullStr(row.pclxfsms)+'" ' +
+                    'editable="false"></input></td>';
             html += ' </tr>';
 
             html += "</table>";
@@ -311,7 +451,6 @@
                 $.messager.alert("错误提示","您的密码复杂度太低（密码中必须包含字母、数字、8-20位之间）","error");
                 return;
             }
-            console.log($("#yhdm").val());
             var updateData = $("#updatePwd").serializeObject();
             $.ajax({
                 type: 'post',
@@ -429,6 +568,27 @@
         <div style="text-align:center;padding:20px">
             <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="updatePwd()">确定</a>
             <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#updatePwdDg').dialog('close')">关闭</a>
+        </div>
+
+    </div>
+
+    <div id="disagreeDg" class="easyui-dialog" title="审核不通过窗口" data-options="modal:true,closed:true"
+         style="width:400px;height:270px;padding:10px;" >
+        <form id="updateZxxsVerify"  method="post">
+            <div style="height: 20px"></div>
+            <table  align="center" valign="middle">
+                <div id="lsh" hidden="hidden"></div>
+                <tr style="padding: 10px">
+                    <td style="font-size: 15px;font-family: 宋体;font-weight:bold;">原因:</td>
+                    <td><input id="yl2" class="easyui-textbox" type="text" name="yl2" style="width:220px;
+                    height:35px;"data-options="multiline:true" ></input></td>
+                </tr>
+            </table>
+        </form>
+        <div style="text-align:center;padding:20px">
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok"
+               onclick="updateZxxsVerify()">确定</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#disagreeDg').dialog('close')">关闭</a>
         </div>
 
     </div>

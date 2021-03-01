@@ -13,4 +13,7 @@ public class Constants {
 
     //保险公司用户默认注册状态
     public static final String BXGS_YHZT = "1";
+
+    //事故认定原因-保险公司
+    public static final String DMLB_SGRDYY_BXGS = "030115";
 }

@@ -333,4 +333,12 @@ public class AcdZxxs {
     public void setGlbm(String glbm) {
         this.glbm = glbm;
     }
+
+    public List<AcdZxxsHuman> getList() {
+        return list;
+    }
+
+    public void setList(List<AcdZxxsHuman> list) {
+        this.list = list;
+    }
 }
