@@ -4,10 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>宁波交警网上事故查询</title>
+    <title>温州交警网上事故查询</title>
     <script type="text/javascript" src="${ctx}/static/easyui-1.4.5/jquery.min.js"></script>
     <script type="text/javascript" src="${ctx}/static/easyui-1.4.5/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="${ctx}/static/easyui-1.4.5/jquery.cookie.min.js"></script>
     <script type="text/javascript" src="${ctx}/static/easyui-1.4.5/locale/easyui-lang-zh_CN.js"></script>
     <script type="text/javascript" src="${ctx}/static/sunland/js/utils.js"></script>
     <script type="text/javascript" src="${ctx}/static/sunland/js/dict.js"></script>
@@ -15,8 +14,6 @@
     <link rel="stylesheet" href="${ctx}/static/easyui-1.4.5/themes/icon.css" type="text/css"></link>
     <link rel="stylesheet" href="${ctx}/static/sunland/css/ydjw.css" type="text/css"></link>
     <link rel="stylesheet" href="${ctx}/static/sunland/css/style.css" type="text/css"></link>
-
-
 
     <script type="text/javascript">
         $(function(){
@@ -34,7 +31,7 @@
                 pageNumber: parseInt(pageNumber),
                 pageSize: parseInt(pageSize),
                 idField:'lsh',
-                height: '260px',
+                height: '500px',
                 url:'${ctx}/acd/data/list',
                 onClickRow: subDataGrid,
                 frozenColumns:[[
@@ -45,11 +42,13 @@
                 ]],
                 columns: [
                     [
-                        {field:'lsh',hidden:true},
+                        {field: 'lsh',hidden: true},
                         {field: 'sgdd', title: '事故地点',width:220,align:'center'},
                         {field: 'sgss', title: '事故事实',width:300,align:'center'},
-                        {field: 'zrtjjg', title: '调解结果',width:300,align:'center'},
-                        {field: 'yl2', title: '简易事故类型',width:100,align:'center',formatter:getSglx}
+                        // {field: 'zrtjjg', title: '调解结果',width:300,align:'center'},
+                        {field: 'sglx', title: '简易事故类型',width:100,align:'center',formatter:getSglx},
+                        {field: 'operate',title: '操作',width: 100,align: 'center',formatter: operateBtn},
+                        {field: 'print',title: '打印',width:100,align:'center',formatter: printOrNot}
                     ]
                 ],
                 toolbar:$("#tb")
@@ -65,6 +64,59 @@
             }
         }
 
+        function operateBtn(value,row,index) {
+            var actions=[];
+            var str = '<a  href="#" rel="external nofollow" name="view" class="easyui-linkbutton" id="apply" ' +
+                    'onclick="apply('
+                    + row.lsh
+                    + ')">申请</a>';
+            if(row.zt == '1'){
+                actions.push(str);
+            }else if(row.zt == '2') {
+                actions.push('已申请');
+            }else if(row.zt =='3'){
+                actions.push('<span style="color: green;">通过</span>');
+            }else {
+                actions.push('<span style="color: red;">不通过</span>');
+            }
+            return actions;
+        }
+
+        //申请
+        function apply(value) {
+            $.ajax({
+                type: 'post',
+                url: '${ctx}/acd/data/apply',
+                data:{lsh: value,zt: '2'},
+                success: function (data) {
+                    $('#acdDg').datagrid('reload');
+                    if(data.status == 1){
+                        $.messager.alert("成功提示",data.message,"success");
+                    }else {
+                        $.messager.alert("错误提示",data.message,"error");
+                    }
+                }
+            })
+        }
+
+        function printOrNot(value,row,index){
+            var actions=[];
+            var str = '<a  href="#" rel="external nofollow" name="view" class="easyui-linkbutton" id="print" ' +
+                    'onclick="printZxxsToAcd('
+                    + row.lsh
+                    + ')">打印</a>';
+            if(row.zt == '3'){
+                actions.push(str);
+            }else{
+                actions.push("不可打印");
+            }
+            return actions;
+        }
+
+        function printZxxsToAcd(value){
+            window.open('${ctx}/acd/bxgsZxxs/print?lsh='+value+"&type=bxgs",'newwindow','top=0,left=0,toolbar=yes,menubar=yes,scrollbars=yes, resizable=yes,location=yes, status=yes');
+        }
+
         function getDate(value, row, index) {
             if (value) {
                 return new Date(value).format('yyyy-MM-dd hh:mm:ss');
@@ -72,19 +124,20 @@
             return '';
         }
 
-        function openUpdatePwd() {
-            var yhdm = ${userInfo.yhdm};
-            $("#yhdm").textbox('setValue',yhdm);
-            $("#updatePwdDg").dialog('open');
-        }
-
         function getSglx(value, row, index){
-            if(value == '999999'){
-                return '现场处理';
-            }else if(value == '999996'){
-                return '事后处理';
+            // if(value == '999999'){
+            //     return '现场处理';
+            // }else if(value == '999996'){
+            //     return '事后处理';
+            // }else{
+            //     return '现场处理';
+            // }
+            if(value == '1'){
+                return '简易事故';
+            }else if(value == '2'){
+                return '自行协商事故';
             }else{
-                return '现场处理';
+                return '';
             }
         }
 
@@ -115,7 +168,7 @@
                 return '丁';
             }else if(value == '5'){
                 return '戊';
-           }
+            }
         }
 
         function getXb(value, row, index){
@@ -170,13 +223,13 @@
                                 {field: 'xb', title: '性别',width: 100,align:'center',formatter:getXb},
                                 {field: 'nl', title: '年龄', formatter: parseInteger,width: 80,align:'center'},
                                 {field: 'zz', title: '住址', width: 250,align:'center'},
-                                {field: 'wfxw1', title: '违法行为1', width: 300,align:'center'},
-                                {field: 'wfxw2', title: '违法行为2', width: 300,align:'center'},
-                                {field: 'wfxw3', title: '违法行为3', width: 300,align:'center'},
+                                {field: 'wfxw1', title: '违法行为1', width: 200,align:'center'},
+                                {field: 'wfxw2', title: '违法行为2', width: 200,align:'center'},
+                                {field: 'wfxw3', title: '违法行为3', width: 200,align:'center'},
                                 {field: 'jtfs', title: '交通方式',width: 100,align:'center',formatter:getDict_AcdJtfs},
                                 {field: 'dabh', title: '档案编号',width: 100,align:'center'},
                                 {field: 'zjcx', title: '准驾车型',width: 100,align:'center'},
-                                {field: 'fzjg', title: '发证机关',width: 100,align:'center'},
+                                // {field: 'fzjg', title: '发证机关',width: 100,align:'center'},
                                 {field: 'fdjh', title: '发动机号',width: 150,align:'center'},
                                 {field: 'clsbdh', title: '车架号',width: 150,align:'center'},
                                 {field: 'clpp', title: '车辆品牌',width: 150,align:'center'},
@@ -184,7 +237,7 @@
                                 {field: 'csys', title: '车身颜色',width: 100,align:'center',formatter:getCsys},
                                 {field: 'cllx', title: '车辆类型',width: 150,align:'center'},
                                 {field: 'jdcsyr', title: '机动车所有人',width: 150,align:'center'},
-                                {field: 'clsyxz', title: '车辆使用性质',width: 100,align:'center',formatter:getSyxz},
+                                // {field: 'clsyxz', title: '车辆使用性质',width: 100,align:'center',formatter:getSyxz},
                                 {field: 'bxgs', title: '保险公司',width: 200,align:'center'},
                                 {field: 'bxpzh', title: '保险凭证号',width: 150,align:'center'}
 
@@ -291,45 +344,6 @@
                 }
             });
         }
-
-        function updatePwd(){
-
-            if($("#mm").val() == ""){
-                $.messager.alert("错误提示","旧密码不能为空","error");
-                return;
-            }
-            if($("#mmNew").val() == ""){
-                $.messager.alert("错误提示","新密码不能为空","error");
-                return;
-            }
-            if($("#mmNew").val() == $("#mm").val()){
-                $.messager.alert("错误提示","新密码不能和旧密码相同","error");
-                return;
-            }
-            var regex = new RegExp('(?=.*[0-9])(?=.*[a-zA-Z]).{8,20}');
-            if(!regex.test($("#mmNew").val())){
-                $.messager.alert("错误提示","您的密码复杂度太低（密码中必须包含字母、数字、8-20位之间）","error");
-                return;
-            }
-            console.log($("#yhdm").val());
-            var updateData = $("#updatePwd").serializeObject();
-            $.ajax({
-                type: 'post',
-                url: '${ctx}/bxlogin/updateUser',
-                data: JSON.stringify(updateData),
-                dataType: 'text',
-                contentType: 'application/json',
-                success: function (data) {
-                    var result = JSON.parse(data);
-                    if (result.status != 1){
-                        $.messager.alert('错误提示',result.message,"error");
-                    }else{
-                        $.messager.alert("成功提示",result.message,"success");
-                        $("#updatePwdDg").dialog('close');
-                    }
-                }
-            })
-        }
     </script>
 </head>
 <body >
@@ -353,11 +367,8 @@
                     <div class="user-logout">
                         <div class="logout-ico"></div><a href="#" onclick="logout()">安全退出</a>
                     </div>
-                    <div class="user-updatePwd">
-                        <div class="lock-ico"></div><a href="#" onclick="openUpdatePwd()">修改密码</a>
-                    </div>
                 </td>
-                </tr>
+            </tr>
         </table>
     </div>
 
@@ -388,8 +399,8 @@
                     <a href="#" class="easyui-linkbutton" iconCls="icon-redo" onclick="resetForm()">重置</a>
                 </div>
             </form>
+        </div>
     </div>
-</div>
     <div id="tabId" style="width: 80%;margin:0px auto;height: 250px;" class="easyui-tabs">
         <div title="事故信息" style="padding:10px">
             <table id="acdInfo"></table>
@@ -398,40 +409,6 @@
         <div title="事故人员信息" style="width: 100%;padding:10px">
             <table id="acdRyInfo" style="width: 100%"></table>
         </div>
-    </div>
-    <div id="updatePwdDg" class="easyui-dialog" title="修改密码窗口" data-options="modal:true,closed:true"
-         style="width:400px;height:270px;padding:10px;" >
-        <form id="updatePwd"  method="post">
-            <div style="height: 20px"></div>
-            <table  align="center" valign="middle">
-                <tr style="padding: 10px">
-                    <td style="font-size: 15px;font-family: 宋体;font-weight:bold;">用户名:</td>
-                    <td><input id="yhdm" class="easyui-textbox" type="text" name="yhdm" style="width:220px;height:35px;"
-                               data-options="iconCls:'icon-man',iconWidth:38" readonly="readonly"></input></td>
-                </tr>
-
-                <tr>
-                    <td style="font-size: 15px;font-family: 宋体;font-weight:bold;">原密码:</td>
-                    <td><input id="mm" class="easyui-textbox" type="password" name="mm" style="width: 220px;height:35px;" data-options="iconCls:'icon-lock',iconWidth:38"></input>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td style="font-size: 15px;font-family: 宋体;font-weight:bold;">新密码:</td>
-                    <td><input id="mmNew" class="easyui-textbox" type="password" name="mmNew" style="width: 220px;
-                    height:35px;" data-options="iconCls:'icon-lock',iconWidth:38"></input>
-                    </td>
-                </tr>
-
-
-            </table>
-        </form>
-        <div style="text-align:center;padding:20px">
-            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="updatePwd()">确定</a>
-            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#updatePwdDg').dialog('close')">关闭</a>
-        </div>
-
-    </div>
     </div>
 </div>
 </body>

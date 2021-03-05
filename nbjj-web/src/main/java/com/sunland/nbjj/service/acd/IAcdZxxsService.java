@@ -13,4 +13,6 @@ public interface IAcdZxxsService {
     public Integer getAcdZxxsVerifyTotal(AcdParamInfo acdParamInfo) throws Exception;
 
     public void verifyZxxs(AcdZxxsDto acdZxxsDto) throws Exception;
+
+    public void applyAcdZxxs(AcdZxxsDto acdZxxsDto);
 }

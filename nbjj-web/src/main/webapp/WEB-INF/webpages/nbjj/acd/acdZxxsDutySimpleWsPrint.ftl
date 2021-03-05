@@ -52,7 +52,7 @@
 
             initMemo();
 
-            $.post("${ctx}/acd/data/item",{lsh:$("#lsh").val()},function(data){
+            $.post("${ctx}/acd/data/zxxsItem",{lsh:$("#lsh").val()},function(data){
                 if(data != null){
                     //赋值事故信息
                     $("#sgbh").html(convertNullStr2(data.sgbh));
@@ -63,7 +63,7 @@
                     $("#zqmj2").html(convertNullStr(data.xm));
                     $("#datestr1").html(convertNullStr(data.datestr));
                     $("#datestr2").html(convertNullStr(data.datestr));
-                    $("#sgss").html(convertNullStr2(data.sgss));
+                    $("#sgss").html(convertNullStr2(data.pclxfsms));
                     if(data.zrtjjg == null || data.zrtjjg == ''){
                         $("#sgzr").html("未调解");
                     }else{
@@ -71,7 +71,7 @@
                     }
                     $("#sgss_tb").css("background-image","url(${cxt}/static/sunland/images/acd/"+data.ssdd+".jpg)");
                     //赋值事故人员信息
-                    var json = data.acdDutyHumanList;
+                    var json = data.list;
                     if(json.length<=1){
                         var dsr = "";
                         for(var i = 0; i<json.length; i++) {
@@ -300,7 +300,7 @@
                 保险公司
             </td>
             <td valign="middle" colspan="1" align="center">
-                交强险凭证号
+                保险凭证号
             </td>
 
         </tr>

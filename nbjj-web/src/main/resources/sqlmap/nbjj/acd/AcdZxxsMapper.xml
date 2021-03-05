@@ -47,6 +47,9 @@
     <update id="updateAcdZxxs">
         update xgt_acd_zxxs set zt = #{zt},yl2=#{yl2} where lsh = #{lsh}
     </update>
+    <update id="applyAcdZxxs">
+        update xgt_acd_zxxs set zt = #{zt} where lsh = #{lsh}
+    </update>
 
     <select id="getAcdZxxsVerifyList" resultType="com.sunland.nbjj.po.acd.AcdZxxs" resultMap="ResultMap">
         SELECT t2.*
@@ -74,7 +77,7 @@
                           and dh=#{sjhm,jdbcType=VARCHAR}
                     ]]>
         </if>
-        ) t1 where t.lsh = t1.lsh and t.zt > '1'
+        ) t1 where t.lsh = t1.lsh and t.zt != 1
         <if test="sgbh != null and sgbh != ''">
             <![CDATA[
                     and sgbh=#{sgbh,jdbcType=VARCHAR}
@@ -121,7 +124,7 @@
                 and dh=#{sjhm,jdbcType=VARCHAR}
             ]]>
         </if>
-        ) t1 where t.lsh = t1.lsh and t.zt > '1'
+        ) t1 where t.lsh = t1.lsh  and t.zt != 1
         <if test="sgbh != null and sgbh != ''">
             <![CDATA[
                     and sgbh=#{sgbh,jdbcType=VARCHAR}

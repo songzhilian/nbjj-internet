@@ -294,6 +294,14 @@ public class AcdController {
         return mav;
     }
 
+    @RequestMapping(value = "bxgsZxxs/print")
+    public ModelAndView getZxxsPrintPage(Long lsh){
+        ModelAndView mav = new ModelAndView("nbjj/acd/acdZxxsDutySimpleWsPrint");
+        mav.addObject("flag",1);
+        mav.addObject("lsh",lsh);
+        return mav;
+    }
+
     @RequestMapping(value = "dsr/print", method = RequestMethod.GET)
     public ModelAndView getAcdPrintPage(String sgbh,String type){
         ModelAndView mav = new ModelAndView("nbjj/acd/acdDutySimpleWsPrint");
@@ -384,4 +392,15 @@ public class AcdController {
         return new JsonResultDto(EnumJsonResult.ACD_ZXXS_SUCCESS.getValue(),EnumJsonResult.ACD_ZXXS_SUCCESS.getText());
     }
 
+
+    @RequestMapping(value = "data/apply")
+    @ResponseBody
+    public JsonResultDto applyZxxs(AcdZxxsDto acdZxxsDto){
+        try{
+            acdZxxsService.applyAcdZxxs(acdZxxsDto);
+        }catch (Exception e){
+            return new JsonResultDto(EnumJsonResult.ACD_ZXXS_FAILED.getValue(),EnumJsonResult.ACD_ZXXS_FAILED.getText());
+        }
+        return new JsonResultDto(EnumJsonResult.ACD_ZXXS_SUCCESS.getValue(),EnumJsonResult.ACD_ZXXS_SUCCESS.getText());
+    }
 }

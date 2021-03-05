@@ -76,8 +76,8 @@
     <select id="getAcdList" resultMap="ResultMap">
       SELECT t2.*
           FROM (SELECT t.*, row_number() over(ORDER BY sgfssj desc) AS num
-                  FROM ACD_DUTYSIMPLE_sync t,
-                  (select DISTINCT lsh from ACD_DUTYSIMPLEHUMAN_SYNC
+                  FROM xgt_acd_zxxs t,
+                  (select DISTINCT lsh from xgt_acd_zxxshuman
                    where 1=1
                   <if test="dsr != null and dsr != ''">
                       <![CDATA[
@@ -125,8 +125,8 @@
     <select id="getAcdTotal" resultType="java.lang.Integer">
         SELECT count(*)
         FROM (SELECT t.lsh
-        FROM ACD_DUTYSIMPLE_sync t,
-        (select DISTINCT lsh from ACD_DUTYSIMPLEHUMAN_SYNC
+        FROM xgt_acd_zxxshuman t,
+        (select DISTINCT lsh from xgt_acd_zxxs
         where 1=1
         <if test="dsr != null and dsr != ''">
             <![CDATA[

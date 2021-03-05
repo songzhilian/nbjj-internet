@@ -40,4 +40,9 @@ public class AcdZxxsServiceImpl implements IAcdZxxsService{
     public void verifyZxxs(AcdZxxsDto acdZxxsDto) throws Exception {
         acdZxxsDao.updateAcdZxxs(acdZxxsDto);
     }
+
+    @Override
+    public void applyAcdZxxs(AcdZxxsDto acdZxxsDto) {
+        acdZxxsDao.applyAcdZxxs(acdZxxsDto);
+    }
 }

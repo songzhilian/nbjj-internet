@@ -17,4 +17,6 @@ public interface IAcdZxxsDao {
     public AcdZxxs getAcdZxxsInfoByLsh(Long lsh);
 
     public int updateAcdZxxs(AcdZxxsDto acdZxxsDto);
+
+    public void applyAcdZxxs(AcdZxxsDto acdZxxsDto);
 }

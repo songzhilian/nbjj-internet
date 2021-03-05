@@ -117,9 +117,9 @@ public class LoginController {
         //校验保险公司注册人数
         int count = sysUserService.queryAccountCountById(sysUser.getBxgsid());
         int maxCount = Integer.parseInt(AcdProperties.getString("acd_insure_person_count"));
+        //注册用户已达上限
         if(count >= maxCount){
             return new JsonResultDto(EnumJsonResult.REGISTER_MAX.getValue(),EnumJsonResult.REGISTER_MAX.getText());
-            //注册用户已达上限
         }
         //注册用户
         String mm = MD5PwdUtil.encodePassword(sysUser.getMm());

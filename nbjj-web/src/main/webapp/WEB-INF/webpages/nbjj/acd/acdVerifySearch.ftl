@@ -34,7 +34,7 @@
                 pageNumber: parseInt(pageNumber),
                 pageSize: parseInt(pageSize),
                 idField:'lsh',
-                height: '420px',
+                height: '450px',
                 url:'${ctx}/acd/data/verifyList',
                 onClickRow: subDataGrid,
                 frozenColumns:[[
@@ -45,10 +45,11 @@
                 ]],
                 columns: [
                     [
-                        {field: 'sgdd', title: '事故地点',width:220,align:'center'},
+                        {fieid: 'lsh',hidden: true},
+                        {field: 'sgdd', title: '事故地点',width:360,align:'center'},
                         {field: 'yl2', title: '简易事故类型',width:100,align:'center',formatter:getSglx},
                         {field: 'zt',title: '状态',width:100,align: 'center',formatter: getZt},
-                        {field: 'lsh',title: '操作',width: 100,align: 'center',formatter: operateBtn}
+                        {field: 'operate',title: '操作',width: 100,align: 'center',formatter: operateBtn}
                     ]
                 ],
                 toolbar:$("#tb")
@@ -68,11 +69,11 @@
             var actions = [];
             var str1 = '<a  href="#" rel="external nofollow" name="view" class="easyui-linkbutton" id="agree" ' +
                     'onclick="agree('
-                    + value
+                    + row.lsh
                     + ')">通过</a>';
             var str2 = '<a  href="#" rel="external nofollow" name="view" class="easyui-linkbutton" id="disagree" ' +
                     'onclick="disagree('
-                    + value
+                    + row.lsh
                     + ')">不通过</a>';
             if(row.zt == '2'){
                 actions.push(str1);
@@ -249,9 +250,9 @@
             if(value == '2'){
                 return '未审核';
             }else if(value =='3'){
-                return '通过';
+                return '<span style="color: green">通过</span>';
             }else if(value =='4'){
-                return '不通过';
+                return '<span style="color: red">不通过</span>';
             }else {
                 return '';
             }
