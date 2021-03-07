@@ -19,21 +19,21 @@
       }
 
       function openBxgsSearch(){
-         $("#logDg").dialog('open');
-         $("#yhdm").focus();
+          $("#yhdm").focus();
+          $("#logDg").dialog('open');
 //         login();
       }
       
       function openZqmjSearch() {
-          $("#logZqmj").dialog('open');
           $("#zqmj").focus();
+          $("#logZqmj").dialog('open');
 //          zqmjLogin();
       }
 
       function openLogin(){
+          $("#yhdm").focus();
           $("#regDg").dialog('close');
           $("#logDg").dialog('open');
-          $("#yhdm").focus();
 //          login();
       }
       function openRegister() {
