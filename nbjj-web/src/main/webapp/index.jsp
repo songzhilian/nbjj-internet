@@ -20,17 +20,20 @@
 
       function openBxgsSearch(){
          $("#logDg").dialog('open');
+         $("#yhdm").focus();
 //         login();
       }
       
       function openZqmjSearch() {
           $("#logZqmj").dialog('open');
+          $("#zqmj").focus();
 //          zqmjLogin();
       }
 
       function openLogin(){
           $("#regDg").dialog('close');
           $("#logDg").dialog('open');
+          $("#yhdm").focus();
 //          login();
       }
       function openRegister() {

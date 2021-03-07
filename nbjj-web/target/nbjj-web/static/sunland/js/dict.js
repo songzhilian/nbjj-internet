@@ -26,7 +26,6 @@ function getDict_Tq(value){
 }
 
 function getDict_ZxxsJtfs(value) {
-    console.log("333333333")
     if(value == '1'){
         return '步行';
     }else if(value == '2'){
