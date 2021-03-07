@@ -7,8 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6d3d29cc-169f-40f6-a5bf-49f41720b997" name="Default" comment="2">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbjj-web/src/main/java/com/sunland/nbjj/controller/acd/AcdController.java" beforeDir="false" afterPath="$PROJECT_DIR$/nbjj-web/src/main/java/com/sunland/nbjj/controller/acd/AcdController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -254,7 +253,7 @@
       <workItem from="1614640878411" duration="93000" />
       <workItem from="1615088695358" duration="6312000" />
       <workItem from="1615099687680" duration="927000" />
-      <workItem from="1615100682127" duration="61000" />
+      <workItem from="1615100682127" duration="282000" />
     </task>
     <task id="LOCAL-00001" summary="2">
       <created>1615096658023</created>

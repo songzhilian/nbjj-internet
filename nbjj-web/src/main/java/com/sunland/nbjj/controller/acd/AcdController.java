@@ -193,7 +193,6 @@ public class AcdController {
                             if(human.getCllx() != null && !human.getCllx().equals("")){
                                 human.setCllx(sysDictService.getSysDictValue(Constants.DMLB_CLLX, human.getCllx()));
                             }
-
                             String bxgs = human.getBxgs();
                             if(!StringUtil.isEmpty(bxgs)){
                                 if(bxgs.indexOf("中国人民财产保险") != -1){
