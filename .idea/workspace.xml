@@ -7,12 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6d3d29cc-169f-40f6-a5bf-49f41720b997" name="Default" comment="2">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nbjj-web/src/main/webapp/WEB-INF/webpages/nbjj/acd/acdDsrSearch.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/nbjj-web/src/main/webapp/WEB-INF/webpages/nbjj/acd/acdDsrSearch.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nbjj-web/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/nbjj-web/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nbjj-web/target/nbjj-web.war" beforeDir="false" afterPath="$PROJECT_DIR$/nbjj-web/target/nbjj-web.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nbjj-web/target/nbjj-web/WEB-INF/webpages/nbjj/acd/acdDsrSearch.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/nbjj-web/target/nbjj-web/WEB-INF/webpages/nbjj/acd/acdDsrSearch.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nbjj-web/target/nbjj-web/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/nbjj-web/target/nbjj-web/index.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +54,7 @@
     </option>
   </component>
   <component name="ProjectId" id="1pPdWK6aUN0axTP0t5VXYepfM18" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -66,7 +63,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../RuoYi-Oracle-master" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -227,11 +224,6 @@
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="Running" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
             </expand>
             <select />
           </treeState>
@@ -261,6 +253,8 @@
       <workItem from="1614397413510" duration="1950000" />
       <workItem from="1614640878411" duration="93000" />
       <workItem from="1615088695358" duration="6312000" />
+      <workItem from="1615099687680" duration="927000" />
+      <workItem from="1615100682127" duration="61000" />
     </task>
     <task id="LOCAL-00001" summary="2">
       <created>1615096658023</created>
@@ -326,10 +320,10 @@
       <screen x="0" y="0" width="1493" height="893" />
     </state>
     <state x="353" y="41" key="CommitChangelistDialog2/0.0.1493.893@0.0.1493.893" timestamp="1615097853265" />
-    <state x="528" y="202" key="FileChooserDialogImpl" timestamp="1615096224286">
+    <state x="528" y="202" key="FileChooserDialogImpl" timestamp="1615100693100">
       <screen x="0" y="0" width="1493" height="893" />
     </state>
-    <state x="528" y="202" key="FileChooserDialogImpl/0.0.1493.893@0.0.1493.893" timestamp="1615096224286" />
+    <state x="528" y="202" key="FileChooserDialogImpl/0.0.1493.893@0.0.1493.893" timestamp="1615100693100" />
     <state width="994" height="234" key="GridCell.Tab.0.bottom" timestamp="1615099656426">
       <screen x="0" y="0" width="1493" height="893" />
     </state>
@@ -414,10 +408,10 @@
       <screen x="0" y="0" width="1493" height="893" />
     </state>
     <state x="249" y="89" key="SettingsEditor/0.0.1493.893@0.0.1493.893" timestamp="1615088839013" />
-    <state x="431" y="271" key="com.intellij.ide.util.TipDialog" timestamp="1615088696012">
+    <state x="431" y="271" key="com.intellij.ide.util.TipDialog" timestamp="1615100682851">
       <screen x="0" y="0" width="1493" height="893" />
     </state>
-    <state x="431" y="271" key="com.intellij.ide.util.TipDialog/0.0.1493.893@0.0.1493.893" timestamp="1615088696012" />
+    <state x="431" y="271" key="com.intellij.ide.util.TipDialog/0.0.1493.893@0.0.1493.893" timestamp="1615100682851" />
     <state x="404" y="204" key="run.anything.popup" timestamp="1615098891026">
       <screen x="0" y="0" width="1493" height="893" />
     </state>
