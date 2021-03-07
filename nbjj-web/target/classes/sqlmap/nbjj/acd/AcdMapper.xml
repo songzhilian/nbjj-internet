@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sunland.nbjj.dao.acd.IAcdDao">
+    <resultMap id="ResultMap" type="AcdDutySimple">
+        <result property="lsh" column="lsh"/>
+        <result property="zt" column="zt"/>
+        <result property="lrsj" column="lrsj"/>
+        <result property="gxsjSys" column="gxsjsys"/>
+        <result property="djbh" column="djbh"/>
+        <result property="sgbh" column="sgbh"/>
+        <result property="xzqh" column="xzqh"/>
+        <result property="xq" column="xq"/>
+        <result property="sgfssj" column="sgfssj"/>
+        <result property="lh" column="lh"/>
+        <result property="lm" column="lm"/>
+        <result property="gls" column="gls"/>
+        <result property="ms" column="ms"/>
+        <result property="jdwz" column="jdwz"/>
+        <result property="sgdd" column="sgdd"/>
+        <result property="ssrs" column="ssrs"/>
+        <result property="zjccss" column="zjccss"/>
+        <result property="lwsglx" column="lwsglx"/>
+        <result property="rdyyfl" column="rdyyfl"/>
+        <result property="sgrdyy" column="sgrdyy"/>
+        <result property="tq" column="tq"/>
+        <result property="xc" column="xc"/>
+        <result property="swsg" column="swsg"/>
+        <result property="sgxt" column="sgxt"/>
+        <result property="cljsg" column="cljsg"/>
+        <result property="dcsg" column="dcsg"/>
+        <result property="pzfs" column="pzfs"/>
+        <result property="lbqk" column="lbqk"/>
+        <result property="tjr" column="tjr"/>
+        <result property="cclrsj" column="cclrsj"/>
+        <result property="jllx" column="jllx"/>
+        <result property="scsjd" column="scsjd"/>
+        <result property="sszd" column="sszd"/>
+        <result property="dah" column="dah"/>
+        <result property="sb" column="sb"/>
+        <result property="tjsgbh" column="tjsgbh"/>
+        <result property="glbm" column="glbm"/>
+        <result property="dzzb" column="dzzb"/>
+        <result property="badw" column="badw"/>
+        <result property="wsbh" column="wsbh"/>
+        <result property="sgss" column="sgss"/>
+        <result property="zrtjjg" column="zrtjjg"/>
+        <result property="jar1" column="jar1"/>
+        <result property="jar2" column="jar2"/>
+        <result property="jbr" column="jbr"/>
+        <result property="gxsj" column="gxsj"/>
+        <result property="jyw" column="jyw"/>
+        <result property="jafs" column="jafs"/>
+        <result property="dllx" column="dllx"/>
+        <result property="glxzdj" column="glxzdj"/>
+        <result property="tjfs" column="tjfs"/>
+        <result property="jd" column="jd"/>
+        <result property="wd" column="wd"/>
+        <result property="pdaID" column="pdaid"/>
+        <result property="pdaLsh" column="pdalsh"/>
+        <result property="jqbh" column="jqbh"/>
+        <result property="zp" column="zp"/>
+        <result property="bz" column="bz"/>
+        <result property="yhdm" column="yhdm"/>
+        <result property="yl1" column="yl1"/>
+        <result property="yl2" column="yl2"/>
+        <result property="yl3" column="yl3"/>
+        <result property="yl4" column="yl4"/>
+        <result property="slsj" column="slsj"/>
+    </resultMap>
+
+    <!-- 获得简易事故详情 -->
+    <resultMap id="ResultMapDetail" type="AcdDutySimple" extends="ResultMap">
+        <collection property="acdDutyHumanList" column="lsh" select="com.sunland.nbjj.dao.acd.IAcdHumanDao.getAcdHumanListByLsh"/>
+    </resultMap>
+
+    <select id="getAcdList" resultMap="ResultMap">
+      SELECT t2.*
+          FROM (SELECT t.*, row_number() over(ORDER BY sgfssj desc) AS num
+                  FROM xgt_acd_zxxs t,
+                  (select DISTINCT lsh from xgt_acd_zxxshuman
+                   where 1=1
+                  <if test="dsr != null and dsr != ''">
+                      <![CDATA[
+                        and xm like #{dsr,jdbcType=VARCHAR}
+                      ]]>
+                  </if>
+                  <if test="hphm != null and hphm != ''">
+                      <![CDATA[
+                        and hphm=upper(#{hphm,jdbcType=VARCHAR})
+                      ]]>
+                  </if>
+                  <if test="sfzmhm != null and sfzmhm != ''">
+                    <![CDATA[
+                          and sfzmhm=upper(#{sfzmhm,jdbcType=VARCHAR})
+                    ]]>
+                  </if>
+                  <if test="sjhm != null and sjhm != ''">
+                    <![CDATA[
+                          and dh=#{sjhm,jdbcType=VARCHAR}
+                    ]]>
+                  </if>
+                  ) t1 where t.lsh = t1.lsh
+            <if test="sgbh != null and sgbh != ''">
+                <![CDATA[
+                    and sgbh=#{sgbh,jdbcType=VARCHAR}
+                ]]>
+            </if>
+
+            <if test="sgsjStart != null and sgsjStart != '' and sgsjEnd != null and sgsjEnd != ''">
+                <![CDATA[
+                    and to_date(#{sgsjStart},'yyyy-mm-dd hh24:mi:ss') <= sgfssj and to_date(#{sgsjEnd},'yyyy-mm-dd hh24:mi:ss') >= sgfssj
+                ]]>
+            </if>
+
+            <if test="sgdd != null and sgdd != ''">
+                <![CDATA[
+                   and sgdd like #{sgdd,jdbcType=VARCHAR}
+                ]]>
+            </if>
+                ) t2
+         WHERE num BETWEEN #{page} AND #{rows}
+
+    </select>
+
+    <select id="getAcdTotal" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM (SELECT t.lsh
+        FROM xgt_acd_zxxshuman t,
+        (select DISTINCT lsh from xgt_acd_zxxs
+        where 1=1
+        <if test="dsr != null and dsr != ''">
+            <![CDATA[
+             and xm like #{dsr,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="hphm != null and hphm != ''">
+            <![CDATA[
+                and hphm=#{hphm,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="sfzmhm != null and sfzmhm != ''">
+            <![CDATA[
+                          and sfzmhm=upper(#{sfzmhm,jdbcType=VARCHAR})
+                    ]]>
+        </if>
+        <if test="sjhm != null and sjhm != ''">
+            <![CDATA[
+                and dh=#{sjhm,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        ) t1 where t.lsh = t1.lsh
+        <if test="sgbh != null and sgbh != ''">
+            <![CDATA[
+                    and sgbh=#{sgbh,jdbcType=VARCHAR}
+                ]]>
+        </if>
+
+        <if test="sgsjStart != null and sgsjStart != '' and sgsjEnd != null and sgsjEnd != ''">
+            <![CDATA[
+                 and to_date(#{sgsjStart},'yyyy-mm-dd hh24:mi:ss') <= sgfssj and to_date(#{sgsjEnd},'yyyy-mm-dd hh24:mi:ss') >= sgfssj
+            ]]>
+        </if>
+
+        <if test="sgdd != null and sgdd != ''">
+            <![CDATA[
+                and sgdd like #{sgdd,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        ) t2
+    </select>
+
+    <select id="getAcdInfoByLsh" resultMap="ResultMapDetail">
+        <![CDATA[
+            select * from ACD_DUTYSIMPLE_sync where lsh=#{lsh,jdbcType=NUMERIC}
+        ]]>
+    </select>
+
+    <select id="getAcdInfoBySgbh" resultMap="ResultMapDetail">
+        <![CDATA[
+            select * from ACD_DUTYSIMPLE_sync where sgbh=#{sgbh,jdbcType=VARCHAR}
+        ]]>
+    </select>
+
+    <select id="getAcdLshBySgbh" resultType="java.lang.Long">
+        <![CDATA[
+            select lsh from ACD_DUTYSIMPLE_SYNC where sgbh=#{sgbh,jdbcType=VARCHAR}
+        ]]>
+    </select>
+
+    <select id="getAcdCountBySgbhSjhm" resultType="java.lang.Integer">
+        <![CDATA[
+            select count(1) from acd_dutysimplehuman_sync where lsh=(select lsh from ACD_DUTYSIMPLE_sync where sgbh=#{sgbh,jdbcType=VARCHAR})
+            and dh=#{sjhm,jdbcType=VARCHAR}
+        ]]>
+    </select>
+
+
+</mapper>

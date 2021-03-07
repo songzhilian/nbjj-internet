@@ -3,7 +3,10 @@
   <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/nbjj-lib-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/nbjj-lib-common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/nbjj-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/nbjj-web/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/nbjj-web/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sql/acd_bxgs.sql" charset="GBK" />
     <file url="file://$PROJECT_DIR$/sql/sys_user.sql" charset="GBK" />
     <file url="file://$PROJECT_DIR$/sql/xgt_ydjw_acd.sql" charset="GBK" />

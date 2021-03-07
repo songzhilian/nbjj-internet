@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sunland.nbjj.dao.sys.IWfxwDao">
+    <resultMap id="ResultMap" type="TrffVioCodeWfdm">
+        <result property="wfxw" column="wfxw"/>
+        <result property="wfms" column="wfms"/>
+        <result property="wfnr" column="wfnr"/>
+    </resultMap>
+
+    <select id="getWfnrByWfxw" resultType="String">
+        <![CDATA[
+            select wfnr from trff_vio_codewfdm where wfxw=#{wfxw,jdbcType=VARCHAR} and (yxqs <= sysdate and yxqz >= sysdate) and rownum=1
+         ]]>
+    </select>
+
+
+</mapper>

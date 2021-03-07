@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sunland.nbjj.dao.acd.IAcdBxgsDao">
+    <resultMap id="ResultMap" type="AcdBxgs">
+        <result column="id" property="id"/>
+        <result column="bxgsmc" property="bxgsmc"/>
+        <result column="bxgsjc" property="bxgsjc"/>
+        <result column="zt" property="zt"/>
+        <result column="bz" property="bz"/>
+    </resultMap>
+    <select id="getAcdBxgsList" resultMap="ResultMap">
+        select id,bxgsmc,bxgsjc,zt,bz from ACD_BXGS
+    </select>
+</mapper>

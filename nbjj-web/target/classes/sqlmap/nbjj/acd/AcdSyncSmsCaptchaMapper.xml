@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sunland.nbjj.dao.acd.IAcdSmsCaptchaDao">
+    <resultMap id="ResultMap" type="AcdSyncSmsCaptcha">
+        <result property="lsh" column="lsh"/>
+        <result property="sglsh" column="sglsh"/>
+        <result property="sjhm" column="sjhm"/>
+        <result property="yzm" column="yzm"/>
+        <result property="qqsj" column="qqsj"/>
+        <result property="lrsj" column="lrsj"/>
+        <result property="yl1" column="yl1"/>
+        <result property="yl2" column="yl2"/>
+        <result property="yl3" column="yl3"/>
+        <result property="yl4" column="yl4"/>
+    </resultMap>
+
+    <select id="getAcdSmsCaptchaBySjhmYzm" resultMap="ResultMap">
+        <![CDATA[
+            select * from ACD_SYNC_SMS_CAPTCHA where sjhm=#{sjhm,jdbcType=VARCHAR} and yzm=#{yzm,jdbcType=VARCHAR} and rownum=1
+        ]]>
+    </select>
+
+
+</mapper>

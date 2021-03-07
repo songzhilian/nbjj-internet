@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sunland.nbjj.dao.sys.ISysDictDao">
+
+
+    <select id="getSysDictValue" resultType="String">
+        <![CDATA[
+            select dmsm1 from sys_dict where dmlb=#{dmlb,jdbcType=VARCHAR} and dmz=#{dmz,jdbcType=VARCHAR}
+         ]]>
+    </select>
+
+
+</mapper>

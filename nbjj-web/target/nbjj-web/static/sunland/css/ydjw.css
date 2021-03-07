@@ -1,0 +1,33 @@
+/* 编辑区域按钮 */
+
+table.form-tb .tb-lab {
+    min-width: 60px;
+    font-weight: normal;
+    font-size: 12px;
+    text-align: left;
+}
+table.form-tb td {
+    padding: 4px 0;
+    width: 220px;
+}
+.form-tb .text,
+.form-tb textarea {
+    width: 164px;
+}
+.form-tb textarea {
+    height: 54px;
+}
+.form-tb .must {
+    float: left;
+    margin: 0 5px 0 -11px;
+    width: 6px;
+}
+.top {
+    background: url("../images/banner.png") no-repeat center;
+    width:40%;
+    height:80px;
+    margin:0 auto;
+}
+
+
+

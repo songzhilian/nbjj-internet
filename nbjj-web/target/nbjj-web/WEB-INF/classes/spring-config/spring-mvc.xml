@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+	   http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+       <!-- 只扫描@Controller和@Component-->
+       <context:component-scan base-package="com.sunland.nbjj.controller" use-default-filters="false">
+              <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+              <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+       </context:component-scan>
+
+       <!--所有当有请求时候都没有匹配的处理请求类，就都去<mvc:default-servlet-handler/>即default servlet处理了。主要是静态资源
+       添加上<mvc:annotation-driven/>后，相应的do请求被Controller处理 -->
+       <mvc:annotation-driven>
+            <mvc:message-converters>
+                   <ref bean="stringHttpMessageConverter"/>
+            </mvc:message-converters>
+       </mvc:annotation-driven>
+
+       <mvc:default-servlet-handler/>
+
+       <!-- 字符串传输时避免出现乱码-->
+       <bean id="stringHttpMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
+              <constructor-arg value="UTF-8"></constructor-arg>
+       </bean>
+
+       <!-- 配置jsp和freemarker -->
+       <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+              <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+              <property name="viewNames" value="*.jsp" />
+              <property name="prefix" value="/WEB-INF/webpages"/>
+              <property name="suffix" value=".jsp"/>
+       </bean>
+
+       <bean id="freemarkerConfiguration" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+              <property name="location" value="classpath:freemarker.properties"/>
+       </bean>
+
+       <!-- 配置freeMarker-->
+       <bean id="freemarkerConfig"
+             class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+              <property name="defaultEncoding" value="UTF-8" />
+              <property name="templateLoaderPath" value="/WEB-INF/webpages/" />
+              <property name="freemarkerSettings" ref="freemarkerConfiguration"/>
+              <property name="freemarkerVariables">
+                     <map>
+                            <entry key="xml_escape" value-ref="fmXmlEscape" />
+                            <entry key="html_escape" value-ref="fmHtmlEscape" />
+                     </map>
+              </property>
+       </bean>
+       <bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape" />
+       <bean id="fmHtmlEscape" class="freemarker.template.utility.HtmlEscape" />
+       <!-- freeMarker 页面解析器 -->
+       <bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+              <property name="viewClass">
+                     <value>org.springframework.web.servlet.view.freemarker.FreeMarkerView</value>
+              </property>
+              <property name="order" value="2" />
+              <property name="cache" value="true" />
+              <property name="prefix" value="" />
+              <property name="suffix" value=".ftl" />
+              <property name="contentType" value="text/html;charset=utf-8" />
+              <property name="exposeRequestAttributes" value="true" />
+              <property name="exposeSessionAttributes" value="true" />
+              <property name="exposeSpringMacroHelpers" value="true" />
+              <property name="requestContextAttribute" value="rc" />
+       </bean>
+
+</beans>

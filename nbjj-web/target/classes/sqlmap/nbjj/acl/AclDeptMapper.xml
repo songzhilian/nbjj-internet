@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sunland.nbjj.dao.acl.IAclDeptDao">
+    <resultMap id="ResultMap" type="AclDept">
+        <result property="bmdm" column="bmdm"/>
+        <result property="sjbmdm" column="sjbmdm"/>
+        <result property="bmmc" column="bmmc"/>
+        <result property="bmjb" column="bmjb"/>
+        <result property="bmjc" column="bmjc"/>
+        <result property="bmqc" column="bmqc"/>
+        <result property="yzmc" column="yzmc"/>
+        <result property="fzjg" column="fzjg"/>
+        <result property="lxdh" column="lxdh"/>
+        <result property="lxdz" column="lxdz"/>
+        <result property="tjjb" column="tjjb"/>
+        <result property="tjmc" column="tjmc"/>
+        <result property="tjpx" column="tjpx"/>
+        <result property="sszhid" column="sszhid"/>
+        <result property="ssdd" column="ssdd"/>
+        <result property="sszhongd" column="sszhongd"/>
+    </resultMap>
+
+    <select id="getDept" resultMap="ResultMap">
+        <![CDATA[
+            select * from acl_dept where bmdm=#{bmdm,jdbcType=VARCHAR}
+        ]]>
+    </select>
+
+</mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sunland.nbjj.dao.acd.IAcdSmsDao">
+    <resultMap id="ResultMap" type="AcdSyncSms">
+        <result property="lsh" column="lsh"/>
+        <result property="sglsh" column="sglsh"/>
+        <result property="sjhm" column="sjhm"/>
+        <result property="fszt" column="fszt"/>
+        <result property="lrsj" column="lrsj"/>
+        <result property="yl1" column="yl1"/>
+        <result property="yl2" column="yl2"/>
+        <result property="yl3" column="yl3"/>
+        <result property="yl4" column="yl4"/>
+    </resultMap>
+
+    <insert id="saveAcdSms" parameterType="AcdSyncSms">
+        <selectKey resultType="long" keyProperty="lsh" order="BEFORE">
+            <![CDATA[
+              select SEQ_ACD_SYNC_SMS.nextval from dual
+             ]]>
+        </selectKey>
+            <![CDATA[
+                insert into acd_sync_sms(lsh,sglsh,sjhm,fszt,lrsj)
+                values(#{lsh},#{sglsh,jdbcType=NUMERIC},#{sjhm,jdbcType=VARCHAR},'0',sysdate)
+             ]]>
+    </insert>
+
+</mapper>

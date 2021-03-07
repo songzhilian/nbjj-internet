@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sunland.nbjj.dao.acd.IAcdHumanDao">
+    <resultMap id="ResultMap" type="AcdDutySimpleHuman">
+        <result property="lsh" column="lsh"/>
+        <result property="rybh" column="rybh"/>
+        <result property="sgbh" column="sgbh"/>
+        <result property="xzqh" column="xzqh"/>
+        <result property="xm" column="xm"/>
+        <result property="xb" column="xb"/>
+        <result property="sfzmhm" column="sfzmhm"/>
+        <result property="nl" column="nl"/>
+        <result property="zz" column="zz"/>
+        <result property="dh" column="dh"/>
+        <result property="rylx" column="rylx"/>
+        <result property="shcd" column="shcd"/>
+        <result property="wfxw1" column="wfxw1"/>
+        <result property="wfxw2" column="wfxw2"/>
+        <result property="wfxw3" column="wfxw3"/>
+        <result property="tk1" column="tk1"/>
+        <result property="tk2" column="tk2"/>
+        <result property="tk3" column="tk3"/>
+        <result property="zyysdw" column="zyysdw"/>
+        <result property="jtfs" column="jtfs"/>
+        <result property="glxzqh" column="glxzqh"/>
+        <result property="dabh" column="dabh"/>
+        <result property="jl" column="jl"/>
+        <result property="jszzl" column="jszzl"/>
+        <result property="zjcx" column="zjcx"/>
+        <result property="cclzrq" column="cclzrq"/>
+        <result property="jsrgxd" column="jsrgxd"/>
+        <result property="fzjg" column="fzjg"/>
+        <result property="sgzr" column="sgzr"/>
+        <result property="hphm" column="hphm"/>
+        <result property="hpzl" column="hpzl"/>
+        <result property="clfzjg" column="clfzjg"/>
+        <result property="fdjh" column="fdjh"/>
+        <result property="clsbdh" column="clsbdh"/>
+        <result property="jdcxh" column="jdcxh"/>
+        <result property="clpp" column="clpp"/>
+        <result property="clxh" column="clxh"/>
+        <result property="csys" column="csys"/>
+        <result property="cllx" column="cllx"/>
+        <result property="jdczt" column="jdczt"/>
+        <result property="syq" column="syq"/>
+        <result property="jdcsyr" column="jdcsyr"/>
+        <result property="clsyxz" column="clsyxz"/>
+        <result property="bx" column="bx"/>
+        <result property="bxgs" column="bxgs"/>
+        <result property="bxpzh" column="bxpzh"/>
+        <result property="clzzwp" column="clzzwp"/>
+        <result property="clgxd" column="clgxd"/>
+        <result property="clcxbj" column="clcxbj"/>
+        <result property="jyw" column="jyw"/>
+        <result property="czdz" column="czdz"/>
+        <result property="hphm2" column="hphm2"/>
+        <result property="sfzmhm2" column="sfzmhm2"/>
+    </resultMap>
+
+    <select id="getAcdHumanListByLsh" resultMap="ResultMap">
+        <![CDATA[
+            select * from ACD_DUTYSIMPLEHUMAN_sync where lsh=#{lsh,jdbcType=NUMERIC}
+         ]]>
+    </select>
+
+
+</mapper>
