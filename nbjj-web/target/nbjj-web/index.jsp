@@ -21,21 +21,25 @@
       function openBxgsSearch(){
           $("#logDg").dialog('open');
           setTimeout(function () {
-              $("#yhdm").focus();
-          },250);
+              $("#yhdm").textbox().next('span').find('input').focus();
+          },50);
 //         login();
       }
       
       function openZqmjSearch() {
-          $("#zqmj").focus();
           $("#logZqmj").dialog('open');
+          setTimeout(function () {
+              $("#zqmj").textbox().next('span').find('input').focus();
+          },50);
 //          zqmjLogin();
       }
 
       function openLogin(){
-          $("#yhdm").focus();
           $("#regDg").dialog('close');
           $("#logDg").dialog('open');
+          setTimeout(function () {
+              $("#yhdm").textbox().next('span').find('input').focus();
+          },50);
 //          login();
       }
       function openRegister() {
@@ -223,7 +227,7 @@
         <table  align="center" valign="middle">
             <tr style="padding: 10px">
                 <td style="font-size: 15px;font-family: 宋体;font-weight:bold;">用户名:</td>
-                <td><input id="zqmj" class="easyui-textbox" type="text" name="yhdm" style="width:220px;height:35px;" data-options="iconCls:'icon-man',iconWidth:38" ></input></td>
+                <td><span><input id="zqmj" class="easyui-textbox" type="text" name="yhdm" style="width:220px;height:35px;" data-options="iconCls:'icon-man',iconWidth:38" ></input></span></td>
             </tr>
 
             <tr>
@@ -245,7 +249,7 @@
     <table  align="center" valign="middle">
       <tr style="padding: 10px">
         <td style="font-size: 15px;font-family: 宋体;font-weight:bold;">用户名:</td>
-        <td><input id="yhdm" class="easyui-textbox" type="text" name="yhdm" style="width:220px;height:35px;" data-options="iconCls:'icon-man',iconWidth:38" ></input></td>
+        <td><span><input id="yhdm" class="easyui-textbox" type="text" name="yhdm" style="width:220px;height:35px;" data-options="iconCls:'icon-man',iconWidth:38" ></input></span></td>
       </tr>
 
       <tr>
@@ -280,7 +284,7 @@
                             data-options="iconCls: 'icon-man',iconWidth:38"/></td>
             </tr>
             <tr padding="10px">
-                <td style="font-size: 15px; font-family: 微软雅黑;font-weight: bold">身份证号:</td>
+                <td style="font-size: 15px; font-family: 宋体;font-weight: bold">身份证号:</td>
                 <td><input id="sfzmhm" class="easyui-textbox" type="text" name="sfzmhm" style="width: 220px;height: 35px;"
                             data-options="iconCls: 'icon-man',iconWidth:38"/></td>
             </tr>

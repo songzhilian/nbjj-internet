@@ -13,6 +13,12 @@
     <link rel="stylesheet" href="${ctx}/static/easyui-1.4.5/themes/icon.css" type="text/css"></link>
     <link rel="stylesheet" href="${ctx}/static/sunland/css/ydjw.css" type="text/css"></link>
     <script type="text/javascript">
+        (function () {
+            setTimeout(function () {
+                $("#sgbh").textbox().next('span').find('input').focus();
+            },50);
+        })();
+
         function resetForm(){
             $("#ff").form("clear");
         }
@@ -145,7 +151,7 @@
                 <table cellpadding="5" align="center" valign="middle">
                     <tr>
                         <td style="font-size: 15px">事故编号:</td>
-                        <td><input id="sgbh" class="easyui-textbox" type="text" name="sgbh" style="width:220px;height:35px;"></input></td>
+                        <td><span><input id="sgbh" class="easyui-textbox" type="text" name="sgbh" style="width:220px;height:35px;"></input></span></td>
                     </tr>
                     <tr>
                         <td style="font-size: 15px">手机号码:</td>
