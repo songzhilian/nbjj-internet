@@ -19,8 +19,10 @@
       }
 
       function openBxgsSearch(){
-          $("#yhdm").focus();
           $("#logDg").dialog('open');
+          setTimeout(function () {
+              $("#yhdm").focus();
+          },250);
 //         login();
       }
       
